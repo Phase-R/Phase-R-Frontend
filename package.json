@@ -24,7 +24,7 @@
     "@tsparticles/slim": "^3.4.0",
     "bcrypt": "^5.1.1",
     "clsx": "^2.1.1",
-    "firebase": "^10.5.2",
+    "firebase": "^10.12.2",
     "framer-motion": "^11.2.6",
     "jsonwebtoken": "^9.0.2",
     "material-icons": "^1.13.12",

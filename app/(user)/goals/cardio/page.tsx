@@ -1,6 +1,5 @@
 import Image from "next/image"
 import { Poppins } from "next/font/google"
-import SlidingImages from "../Sliding_images"
 
 const poppins = Poppins({ subsets: ['latin'], weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'] })
 
@@ -23,7 +22,7 @@ export default function cardioGoals() {
             <br />
             <br />
 
-            <SlidingImages images={cardio_imgs} />
+            {/* <SlidingImages images={cardio_imgs} /> */}
             <br />
             <h2 className={`w-full text-center text-white ${poppins.className} font-bold text-lg md:text-2xl lg:text-4xl xl:text-6xl`}>PLAN YOUR WORKOUT</h2>
             <br />

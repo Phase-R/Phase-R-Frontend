@@ -2,7 +2,7 @@ import React from "react";
 import PageHeader from "@/app/(user)/PageHeader";
 import VidComponent from "@/app/(user)/physical-fitness/VidsComponent";
 
-export default function Batting() {
+export default function Football_midfield() {
     const vids = [
         { title: "GRIP", desc: "gripper gripper", videoUrl: "https://www.youtube.com/embed/eWLVBP3VrO4?si=ImHHtesOQWzzIfye" },
         { title: "BOWLING ACTION", desc: "bowling action maadu", videoUrl: "https://www.youtube.com/embed/eWLVBP3VrO4?si=ImHHtesOQWzzIfye" },
@@ -11,8 +11,8 @@ export default function Batting() {
     
     return(
         <div>
-            <PageHeader headerHeading="batting" headerDesc="Cricket is a very old game which requires the utmost of wits, tenacity and discipline combined with a high skill level either with the bat, ball or both" bgImage={'/sports_page/batting_page_bg.png'} headerColor="bg-button-greenp" headerSubtextArray={["Balance", "Timing", "Movement"]} />
-            <VidComponent miniTitle="Wicket Keeping Drills" pageTitle="" pageTitleColor="text-orange-500" pageDesc="" videos={vids} />
+            <PageHeader headerHeading="Midfielder" headerDesc="Football is a globally beloved sport demanding exceptional teamwork, strategy, and endurance. Players exhibit high skill levels in passing, dribbling, and scoring goals to outmaneuver their opponents." bgImage={'/sports_page/midfield_page_bg.png'} headerColor="bg-button-greenp" headerSubtextArray={["Balance", "Timing", "Movement"]} />
+            <VidComponent miniTitle="Midfielder Drills" pageTitle="" pageTitleColor="text-orange-500" pageDesc="" videos={vids} />  
         </div>
-    )
+    )   
 }

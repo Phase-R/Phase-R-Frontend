@@ -1,16 +1,21 @@
 'use client';
-import { useEffect } from 'react';
-import { useRouter } from "next/navigation";
 
+import { useRouter } from "next/navigation";
+import { useEffect } from 'react';
+import { getCookie } from 'cookies-next';
+// import { useAuthStore } from "@/app/store/store";
 
 const Page = () => {
-    const { push } = useRouter();
+    const router = useRouter();
     useEffect(() => {
-        const token = localStorage.getItem('userToken');
-        if (!token) {
-            push('/login');
+        const token = getCookie('Auth');
+        // const token = useAuthStore.getState().isAuthenticated;
+        alert(token);
+        if (!!!token) {  
+            router.push('/login');
         }
-    }, []); 
+    }, []);
+
     return (
         <>
             <div className="h-screen">

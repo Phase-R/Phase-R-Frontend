@@ -2,24 +2,24 @@
 import { useEffect, useState } from 'react';
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-
+import { getCookie, deleteCookie } from 'cookies-next';
 
 export default function Navbar() {
     const { push } = useRouter();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
-        if (typeof window !== 'undefined') {
-            const userToken = localStorage.getItem('userToken');
-            setIsLoggedIn(!!userToken);
-        }
-    }, []);
+        const userToken = getCookie('Auth');
+        setIsLoggedIn(!!userToken);
+    }, [isLoggedIn]);
+
     const handleLogout = () => {
-        localStorage.removeItem('userToken');
-        push('/');
+        console.log('Logging out');
+        deleteCookie('Auth');
         setIsLoggedIn(false);
+        push('/login');
     };
-    const handleLogin=()=>{
+    const handleLogin=()=>{     
         if(isLoggedIn){
             push("/profile")
         }

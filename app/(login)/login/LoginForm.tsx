@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useEffect } from "react";
 
 import Image from "next/image";
 
@@ -11,6 +11,8 @@ import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import AppleIcon from '@mui/icons-material/Apple';
 import Link from "next/link";
+import { getCookie } from "cookies-next";
+// import { useAuthStore } from "@/app/store/store";
 
 import { useRouter } from "next/navigation";
 
@@ -32,7 +34,6 @@ const LoginForm = () => {
 	const [errMsg, setErrMsg] = useState('');
 	const [loadingMessage, setLoadingMessage] = useState('Logging In...')
 
-
 	const onHandleSubmit = async (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		setDivState("loading");
@@ -44,7 +45,7 @@ const LoginForm = () => {
 		} 
 
 		else {
-			const response = await fetch('/api/login', {
+			const response = await fetch('http://localhost:8080/user/login', {
 				method: 'POST',
 				body: JSON.stringify({
 				email: email,
@@ -53,13 +54,14 @@ const LoginForm = () => {
 				headers: {
 				'Content-Type': 'application/json'
 				},
-				// credentials: 'include'
+				credentials: 'include'	
 			});
-			const returnedData = await response.json();
+			console.log(response);
 			if(response.ok){
-				const token = returnedData.token;
-				localStorage.setItem('userToken', token)
+				const returnedData = await response.json();	
+				alert(returnedData);
 				setLoadingMessage('Log In Successful. Redirecting...');
+				// useAuthStore.setState({isAuthenticated: true});
 				push('/profile');
 			}
 			else{
@@ -67,19 +69,6 @@ const LoginForm = () => {
 				setErrMsg('Invalid Username or Password');
 				setDivState('active');
 			}
-		
-			// const returnedData = await response.json();
-			// if (returnedData['message'] === 'User Not Found') {
-			// 	setErrState('error');
-			// 	setErrMsg('Invalid Username or Password');
-			// 	setDivState('active');
-			// } 
-			// else if (returnedData['message'] === 'User Found') {
-			// 	const token = returnedData.token;
-        	// 	localStorage.setItem('userToken', token)
-			// 	setLoadingMessage('Log In Successful. Redirecting...');
-			// 	push('/profile');
-			// }
 		}
 	};
 

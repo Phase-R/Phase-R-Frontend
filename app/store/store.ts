@@ -1,29 +1,13 @@
-import { log } from 'console';
 import { create } from 'zustand';
 
-interface User {
-    username: string;
-    fname: string;
-    lname: string;
-    email: string;
-    age: number;
+interface AuthState {
+  isAuthenticated: boolean;
+  setIsAuthenticated: (value: boolean) => void;
 }
 
-interface AuthResponse {
-    user: User;
-    token: string;
-    isVerified?: boolean;
-}
+const useAuthStore = create<AuthState>((set) => ({
+  isAuthenticated: false,
+  setIsAuthenticated: (value) => set({ isAuthenticated: value }),
+}));
 
-interface AuthStore {
-    user: User | null;
-    token: string | null;
-    isAuth: boolean;
-    error: string | null;
-    isLoading: boolean;
-    isVerified: boolean;
-    signup: (userData: User) => Promise<void>;
-    login: (username: string, password: string) => Promise<void>;
-    verify: (token: string) => Promise<void>;
-    logout: () => void;
-}
+export { useAuthStore };

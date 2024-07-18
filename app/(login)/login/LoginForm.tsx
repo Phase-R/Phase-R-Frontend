@@ -11,9 +11,7 @@ import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import AppleIcon from '@mui/icons-material/Apple';
 import Link from "next/link";
-import { getCookie } from "cookies-next";
-// import { useAuthStore } from "@/app/store/store";
-
+import { useAuthStore } from "@/app/store/store";
 import { useRouter } from "next/navigation";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"] });
@@ -21,6 +19,10 @@ const montserrat = Montserrat({ subsets: ["latin"], weight: ["100", "200", "300"
 
 
 const LoginForm = () => {
+	const { setIsAuthenticated, getIsAuthenticated } = useAuthStore((state) => ({
+		setIsAuthenticated: state.setIsAuthenticated,
+		getIsAuthenticated: state.getIsAuthenticated,
+	  }));
 	const stdWidth = 1200;
 	const stdHeight = 1200;
 
@@ -33,6 +35,12 @@ const LoginForm = () => {
 	const [errState, setErrState] = useState('error-free');
 	const [errMsg, setErrMsg] = useState('');
 	const [loadingMessage, setLoadingMessage] = useState('Logging In...')
+
+	useEffect(() => {
+		if (getIsAuthenticated()) {
+			push('/profile');
+		}
+	}, [getIsAuthenticated]);
 
 	const onHandleSubmit = async (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -58,10 +66,9 @@ const LoginForm = () => {
 			});
 			console.log(response);
 			if(response.ok){
-				const returnedData = await response.json();	
-				alert(returnedData);
 				setLoadingMessage('Log In Successful. Redirecting...');
-				// useAuthStore.setState({isAuthenticated: true});
+				setIsAuthenticated(true);
+				// alert(getIsAuthenticated());
 				push('/profile');
 			}
 			else{

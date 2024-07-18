@@ -3,12 +3,12 @@
 import Link from "next/link";
 import { Poppins } from "next/font/google";
 import { useState, FormEvent } from "react";
-import { useRouter } from 'next/navigation'; 
+import { useRouter } from 'next/navigation';
 
-const poppins = Poppins({subsets: ['latin'], weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"]})
+const poppins = Poppins({ subsets: ['latin'], weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"] })
 
 const SignupPage = () => {
-    const router = useRouter(); 
+    const router = useRouter();
 
     const [divState, setDivState] = useState('active');
     const [errState, setErrState] = useState('error-free');
@@ -21,9 +21,11 @@ const SignupPage = () => {
 
         const formData = new FormData(event.currentTarget);
         const userData = {
-            fullName: formData.get('fullName') as string,
+            username: formData.get('username') as string,
+            fname: formData.get('fname') as string,
+            lname: formData.get('lname') as string,
             email: formData.get('email') as string,
-            phoneNumber: formData.get('phoneNumber') as string,
+            age: parseInt(formData.get('age') as string, 10),
             password: formData.get('password') as string,
             confirmPassword: formData.get('confirmPassword') as string
         };
@@ -71,10 +73,12 @@ const SignupPage = () => {
                             <p className="text-center text-sm underline text-primary-orange-2 my-2">Returning User? Sign In Here</p>
                         </Link>
                         <form onSubmit={onHandleSubmit}>
-                            <input type='text' name="fullName" placeholder="Full Name" className="w-[100%] bg-primary-black-2 p-2 mt-5 rounded-md text-white placeholder:text-primary-orange-2 outline-none" />
+                            <input type='text' name="username" placeholder="Username" className="w-[100%] bg-primary-black-2 p-2 mt-5 rounded-md text-white placeholder:text-primary-orange-2 outline-none" />
+                            <input type='text' name="fname" placeholder="First Name" className="w-[100%] bg-primary-black-2 p-2 mt-5 rounded-md text-white placeholder:text-primary-orange-2 outline-none" />
+                            <input type='text' name="lname" placeholder="Last Name" className="w-[100%] bg-primary-black-2 p-2 mt-5 rounded-md text-white placeholder:text-primary-orange-2 outline-none" />
                             <input type='email' name="email" placeholder="Email" className="w-[100%] bg-primary-black-2 p-2 mt-5 rounded-md text-white placeholder:text-primary-orange-2 outline-none" />
-                            <input type='text' name="phoneNumber" placeholder="Phone Number" className="w-[100%] bg-primary-black-2 p-2 mt-5 rounded-md text-white placeholder:text-primary-orange-2 outline-none" />
-                            
+                            <input type='number' name="age" placeholder="Age" className="w-[100%] bg-primary-black-2 p-2 mt-5 rounded-md text-white placeholder:text-primary-orange-2 outline-none" />
+
                             <div className="flex justify-between gap-5">
                                 <input type='password' name="password" placeholder="Password" className="w-[100%] bg-primary-black-2 p-2 mt-5 rounded-md text-white placeholder:text-primary-orange-2 outline-none" />
                                 <input type='password' name="confirmPassword" placeholder="Confirm Password" className="w-[100%] bg-primary-black-2 p-2 mt-5 rounded-md text-white placeholder:text-primary-orange-2 outline-none" />

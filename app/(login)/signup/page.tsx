@@ -6,10 +6,10 @@ import { useState, FormEvent, useEffect } from "react";
 import { useRouter } from 'next/navigation';
 import { getCookie } from "cookies-next";
 
-const poppins = Poppins({subsets: ['latin'], weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"]})
+const poppins = Poppins({ subsets: ['latin'], weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"] })
 
 const SignupPage = () => {
-    const router = useRouter(); 
+    const router = useRouter();
 
     const [divState, setDivState] = useState('active');
     const [errState, setErrState] = useState('error-free');

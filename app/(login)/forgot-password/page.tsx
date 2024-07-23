@@ -30,14 +30,20 @@ const ForgotPasswordPage = () => {
                     'Content-Type': 'application/json'
                 }
             });
-
+            console.log(response)
             if (response.ok) {
                 setLoadingMessage('Reset Link Sent. Check Your Email.');
                 setDivState('active');
                 router.push(`/reset-password?email=${encodeURIComponent(email)}`);
-            } else {
+            }
+            if (response.status == 405) {
                 setErrState('error');
-                setErrMsg('An error occurred. Please try again.');
+                setErrMsg('Invalid email or email not found');
+                setDivState('active');
+            }
+            else {
+                setErrState('error');
+                setErrMsg('Server error');
                 setDivState('active');
             }
         } catch (error) {

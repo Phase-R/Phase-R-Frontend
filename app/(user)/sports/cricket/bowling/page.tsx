@@ -14,9 +14,9 @@ export default function Bowling() {
             <PageHeader headerHeading="BOWLING" headerDesc="Cricket is a very old game which requires the utmost of wits, tenacity and discipline combined with a high skill level either with the bat, ball or both" bgImage={"/sports_page/bowling_page_bg.png"} headerColor="bg-orange-500" headerSubtextArray={["Spin", "Release", "Pace"]}  />
             <VidComponent miniTitle="FUNDAMENTALS OF BOWLING" pageTitle="" pageTitleColor="text-orange-500" pageDesc="" videos={bowlingVids} />
 
-            <div className="w-full text-white">
+            <div className="text-white">
                 <h2 className="text-center text-lg md:text-xl lg:text-2xl font-bold">CHOOSE THE TYPE OF BOWLING</h2>
-                <div className="flex justify-center text-lg md:text-xl lg:text-2xl">
+                <div className="flex justify-center items-center            text-lg md:text-xl lg:text-2xl">
                     <SubPageSection imageUrl="/sports_page/Pace_bowling.png" dispText="Pace Bowling" />
                     <SubPageSection imageUrl="/sports_page/Spin_bowling.png" dispText="Spin Bowling" />
                 </div>

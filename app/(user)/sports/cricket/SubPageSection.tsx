@@ -12,7 +12,7 @@ interface PropTypes {
 
 const SubPageSection = (props: PropTypes) => {
     return (
-        <div className="flex justify-center items-center pt-[20%] pb-[10%]">
+        <div className="flex justify-center items-center m-10">
             <div className=" relative group">
                 <Image src={props.imageUrl} alt="SubPage section photo" width={700} height={700} className="rounded-lg transition-opacity duration-300 ease-in-out group-hover:opacity-25 pl-10 pr-10"></Image>
 

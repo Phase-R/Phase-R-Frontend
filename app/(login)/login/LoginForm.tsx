@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useEffect } from "react";
 
 import Image from "next/image";
 
@@ -11,7 +11,7 @@ import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import AppleIcon from '@mui/icons-material/Apple';
 import Link from "next/link";
-
+import { useAuthStore } from "@/app/store/store";
 import { useRouter } from "next/navigation";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"] });
@@ -19,6 +19,10 @@ const montserrat = Montserrat({ subsets: ["latin"], weight: ["100", "200", "300"
 
 
 const LoginForm = () => {
+	const { setIsAuthenticated, getIsAuthenticated } = useAuthStore((state) => ({
+		setIsAuthenticated: state.setIsAuthenticated,
+		getIsAuthenticated: state.getIsAuthenticated,
+	  }));
 	const stdWidth = 1200;
 	const stdHeight = 1200;
 
@@ -32,6 +36,11 @@ const LoginForm = () => {
 	const [errMsg, setErrMsg] = useState('');
 	const [loadingMessage, setLoadingMessage] = useState('Logging In...')
 
+	useEffect(() => {
+		if (getIsAuthenticated()) {
+			push('/profile');
+		}
+	}, [getIsAuthenticated]);
 
 	const onHandleSubmit = async (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -44,7 +53,7 @@ const LoginForm = () => {
 		} 
 
 		else {
-			const response = await fetch('/api/login', {
+			const response = await fetch('http://localhost:8080/user/login', {
 				method: 'POST',
 				body: JSON.stringify({
 				email: email,
@@ -53,13 +62,13 @@ const LoginForm = () => {
 				headers: {
 				'Content-Type': 'application/json'
 				},
-				// credentials: 'include'
+				credentials: 'include'	
 			});
-			const returnedData = await response.json();
+			console.log(response);
 			if(response.ok){
-				const token = returnedData.token;
-				localStorage.setItem('userToken', token)
 				setLoadingMessage('Log In Successful. Redirecting...');
+				setIsAuthenticated(true);
+				// alert(getIsAuthenticated());
 				push('/profile');
 			}
 			else{
@@ -67,19 +76,6 @@ const LoginForm = () => {
 				setErrMsg('Invalid Username or Password');
 				setDivState('active');
 			}
-		
-			// const returnedData = await response.json();
-			// if (returnedData['message'] === 'User Not Found') {
-			// 	setErrState('error');
-			// 	setErrMsg('Invalid Username or Password');
-			// 	setDivState('active');
-			// } 
-			// else if (returnedData['message'] === 'User Found') {
-			// 	const token = returnedData.token;
-        	// 	localStorage.setItem('userToken', token)
-			// 	setLoadingMessage('Log In Successful. Redirecting...');
-			// 	push('/profile');
-			// }
 		}
 	};
 

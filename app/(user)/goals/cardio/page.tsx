@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { Poppins } from "next/font/google"
+import Slider from "@/app/components/ui/carousel"
 
 const poppins = Poppins({ subsets: ['latin'], weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'] })
 
@@ -16,13 +17,9 @@ export default function cardioGoals() {
                 <Image src="/goals/goals_main_5.png" alt="goals_main_5" width={60} height={10} className="w-full mx-auto opacity-40"></Image>
             </div>
             <h1 className={`z-10 absolute inset-0 w-f   ull lg:min-h-[74vh] text-center text-white font-bold ${poppins.className} py-[35%] md:py-[30%] lg:py-[25%] text-xl md:text-3xl lg:text-5xl xl:text-7xl`} >TRACK YOUR GOALS</h1>
+            {/* Temp break statements */}
             <br />
-            <br />
-            <br />
-            <br />
-            <br />
-
-            {/* <SlidingImages images={cardio_imgs} /> */}
+            <Slider images={cardio_imgs} />
             <br />
             <h2 className={`w-full text-center text-white ${poppins.className} font-bold text-lg md:text-2xl lg:text-4xl xl:text-6xl`}>PLAN YOUR WORKOUT</h2>
             <br />

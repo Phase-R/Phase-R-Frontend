@@ -1,12 +1,12 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from "next/image";
 import { Poppins } from "next/font/google";
 import { SlVolume2 } from "react-icons/sl";
 import Slider from '@/app/components/ui/carousel';
-import MCQ from "@/app/components/ui/mcq";
+import FlipCard from "@/app/components/ui/flipcard";
 
-// Import Poppins font
+//Import Poppins font
 const poppins = Poppins({
     subsets: ['latin'],
     weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900']
@@ -15,14 +15,10 @@ const poppins = Poppins({
 const profile_pics = ["/mental_health/guy.png", "/mental_health/guy.png", "/mental_health/guy.png"];
 const desc_arr = ['"good review"', '"ok review"', '"bad review"'];
 const names = ["john jacob", "percy jackson", "thor ragnarok"];
-const questions = ["is aniruddh gay?", "can you confirm ur answer", "bcoz i know he is??"];
+const questions = ["question 1?", "question 2", "question 3"];
 
 export default function Page() {
-    const [isFlipped, setIsFlipped] = useState(false);
 
-    const handleClick = () => {
-        setIsFlipped(!isFlipped);
-    };
 
     return (
         <>
@@ -108,57 +104,16 @@ export default function Page() {
                     </div>
                 </div>
 
-                <div className="flex justify-center mx-auto mt-24">
-                    <div className="relative max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg bg-black">
-                        <Image
-                            src="/mental_health/combined_1.png"
-                            alt="combined_1"
-                            layout="responsive"
-                            height={500}
-                            width={500}
-                            className="object-cover opacity-70"
-                        />
-                        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                            <h2 className={`${poppins.className} text-white sm:text-lg text-2xl md:text-4xl font-bold text-center`}>
-                                WELL-BEING<br className="block" />
-                                QUESTIONNAIRE
-                            </h2>
-                        </div>
-                    </div>
-                </div>
-                {/* <div className="flex justify-center mx-auto mt-24">
-                    {!isFlipped ? (
-                        <div className={`relative bg-black transition-transform duration-700 ${isFlipped ? 'rotate-y-180' : ''}`}
-                            onClick={handleClick}
-                        >
-                            <Image
-                                src="/mental_health/combined_1.png"
-                                alt="combined_1"
-                                layout="responsive"
-                                height={500}
-                                width={500}
-                                className="object-cover opacity-70"
-                            />
-                            <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                                <h2 className={`${poppins.className} text-white sm:text-lg text-2xl md:text-4xl font-bold text-center`}>
-                                    WELL-BEING<br className="block" />
-                                    QUESTIONNAIRE
-                                </h2>
-                            </div>
-                        </div>
-                    ) : (
-                        <MCQ question={questions} />
-                    )}
-                </div> */}
+                <FlipCard question={questions} />
 
-                <div className="flex justify-center mx-auto mt-24 mb-12">
+                <div className="flex justify-center mx-auto mt-24 lg:mt-96 mb-12">
                     <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg bg-black">
                         <Image
                             src="/mental_health/combined_2.png"
                             alt="combined_2"
                             layout="responsive"
-                            height={500}
-                            width={500}
+                            height={1}
+                            width={1}
                             className="object-cover opacity-70"
                         />
                         <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
@@ -202,6 +157,7 @@ export default function Page() {
                 </h2>
 
                 <Slider description={desc_arr} images={profile_pics} sideText={names} />
+
             </div>
         </>
     );

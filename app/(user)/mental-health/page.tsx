@@ -16,31 +16,35 @@ const profile_pics = ["/mental_health/guy.png", "/mental_health/guy.png", "/ment
 const desc_arr = ['"good review"', '"ok review"', '"bad review"'];
 const names = ["john jacob", "percy jackson", "thor ragnarok"];
 const quests = ["hi?", "hii??", "hiiii??"];
+
 export default function Page() {
     const [questions, setQuestions] = useState<string[]>([]);
 
-    // Fetch questions from the API endpoint
-    // try {
-    //     const fetchQuestions = async () => {
-    //         try {
-    //             const response = await fetch('/api/getQuestions');
-    //             if (response.ok) {
-    //                 const data = await response.json();
-    //                 setQuestions(data.question_set);  // Set the question_set array in state
-    //             } else {
-    //                 console.error('Failed to fetch questions');
-    //             }
-    //         } catch (error) {
-    //             console.error('Error fetching questions:', error);
-    //         }
-    //     };
+    useEffect(() => {
+        // Fetch questions when the component mounts
+        const fetchQuestions = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/fetch_questions', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    credentials: 'include',
+                });
 
-    //     fetchQuestions();
-    // }
-    // catch (e) {
-    //     console.log(e)
-    // }
+                if (response.ok) {
+                    const data = await response.json();
+                    setQuestions(data.question_set); // Set the question_set array
+                } else {
+                    console.error('Failed to fetch questions');
+                }
+            } catch (error) {
+                console.error('Error fetching questions:', error);
+            }
+        };
 
+        fetchQuestions();
+    }, []);
     return (
         <>
             <div className="relative">
@@ -125,8 +129,7 @@ export default function Page() {
                     </div>
                 </div>
 
-
-                <FlipCard question={quests} />
+                <FlipCard question={questions} />
 
                 <div className="flex justify-center mx-auto mt-24 lg:mt-96 mb-12">
                     <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg bg-black">

@@ -57,17 +57,15 @@ const FlipCard: React.FC<MCQProps> = ({ question }) => {
                 body: JSON.stringify({ answers: selectedOptions }),
 				credentials: 'include'	
             });
-
             if (response.ok) {
                 console.log('Answers submitted successfully');
-                // Optionally reset the quiz or navigate to another page
             } else {
                 console.error('Failed to submit answers');
             }
         } catch (error) {
             console.error('Error submitting answers:', error);
         }
-    };
+    }; 
 
     return (
         <div className="flex justify-center items-center w-full h-full">

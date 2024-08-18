@@ -23,19 +23,19 @@ const FlipCard: React.FC<MCQProps> = ({ question }) => {
     const handleNext = () => {
         if (activeQuestion < question.length - 1) {
             setActiveQuestion(prev => prev + 1);
-            setFlipped(true);  // Flip to the next question
+            setFlipped(true);
         } else {
             setActiveQuestion(0);
-            setFlipped(false); // Go back to the front face (image)
+            setFlipped(false);
         }
     };
 
     const handlePrev = () => {
         if (activeQuestion > 0) {
             setActiveQuestion(prev => prev - 1);
-            setFlipped(true);  // Flip to the previous question
+            setFlipped(true);
         } else {
-            setFlipped(false); // Go back to the front face (image)
+            setFlipped(false);
         }
     };
 
@@ -47,10 +47,31 @@ const FlipCard: React.FC<MCQProps> = ({ question }) => {
         });
     };
 
+    const handleSubmit = async () => {
+        try {
+            const response = await fetch('/api/postAnswers', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ answers: selectedOptions }),
+            });
+
+            if (response.ok) {
+                console.log('Answers submitted successfully');
+                // Optionally reset the quiz or navigate to another page
+            } else {
+                console.error('Failed to submit answers');
+            }
+        } catch (error) {
+            console.error('Error submitting answers:', error);
+        }
+    };
+
     return (
         <div className="flex justify-center items-center w-full h-full">
             <div className="h-[500px] w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl bg-transparent cursor-pointer perspective">
-                <div className={`mt-24 relative preserve-3d w-full h-full duration-1000 ${flipped ? 'my-rotate-y-180' : ''}`}>
+                <div className={`mt-24 backface-hidden relative preserve-3d w-full h-full duration-1000 ${flipped ? 'my-rotate-y-180' : ''}`}>
                     <div className="absolute backface-hidden" onClick={handleFlip}>
                         <div className="w-full h-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg bg-black">
                             <Image
@@ -94,9 +115,15 @@ const FlipCard: React.FC<MCQProps> = ({ question }) => {
                                         <button onClick={handlePrev}>
                                             <img src="/mental_health/left-arrow.png" alt="Left Arrow" className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6" />
                                         </button>
-                                        <button onClick={handleNext} className={`${poppins.className} rounded-full ml-4 mr-4 md:ml-6 md:mr-6 lg:ml-8 lg:mr-8 py-1 px-6 md:px-8 lg:py-2 lg:px-10 font-bold bg-[#d9d9d9] text-white text-sm md:text-md lg:text-lg drop-shadow-lg`} style={{ textShadow: '2px 2px 3px black' }}>
-                                            SKIP
-                                        </button>
+                                        {activeQuestion === question.length - 1 ? (
+                                            <button onClick={handleSubmit} className={`${poppins.className} rounded-full ml-4 mr-4 md:ml-6 md:mr-6 lg:ml-8 lg:mr-8 py-1 px-6 md:px-8 lg:py-2 lg:px-10 font-bold bg-[#4AC847] text-white text-sm md:text-md lg:text-lg drop-shadow-lg`} style={{ textShadow: '2px 2px 3px black' }}>
+                                                SUBMIT
+                                            </button>
+                                        ) : (
+                                            <button onClick={handleNext} className={`${poppins.className} rounded-full ml-4 mr-4 md:ml-6 md:mr-6 lg:ml-8 lg:mr-8 py-1 px-6 md:px-8 lg:py-2 lg:px-10 font-bold bg-[#d9d9d9] text-white text-sm md:text-md lg:text-lg drop-shadow-lg`} style={{ textShadow: '2px 2px 3px black' }}>
+                                                SKIP
+                                            </button>
+                                        )}
                                         <button onClick={handleNext}>
                                             <img src="/mental_health/right-arrow.png" alt="Right Arrow" className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6" />
                                         </button>

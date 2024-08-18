@@ -6,7 +6,7 @@ import { SlVolume2 } from "react-icons/sl";
 import Slider from '@/app/components/ui/carousel';
 import FlipCard from "@/app/components/ui/flipcard";
 
-//Import Poppins font
+// Import Poppins font
 const poppins = Poppins({
     subsets: ['latin'],
     weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900']
@@ -15,10 +15,31 @@ const poppins = Poppins({
 const profile_pics = ["/mental_health/guy.png", "/mental_health/guy.png", "/mental_health/guy.png"];
 const desc_arr = ['"good review"', '"ok review"', '"bad review"'];
 const names = ["john jacob", "percy jackson", "thor ragnarok"];
-const questions = ["question 1?", "question 2", "question 3"];
-
+const quests = ["hi?", "hii??", "hiiii??"];
 export default function Page() {
+    const [questions, setQuestions] = useState<string[]>([]);
 
+    // Fetch questions from the API endpoint
+    // try {
+    //     const fetchQuestions = async () => {
+    //         try {
+    //             const response = await fetch('/api/getQuestions');
+    //             if (response.ok) {
+    //                 const data = await response.json();
+    //                 setQuestions(data.question_set);  // Set the question_set array in state
+    //             } else {
+    //                 console.error('Failed to fetch questions');
+    //             }
+    //         } catch (error) {
+    //             console.error('Error fetching questions:', error);
+    //         }
+    //     };
+
+    //     fetchQuestions();
+    // }
+    // catch (e) {
+    //     console.log(e)
+    // }
 
     return (
         <>
@@ -104,7 +125,8 @@ export default function Page() {
                     </div>
                 </div>
 
-                <FlipCard question={questions} />
+
+                <FlipCard question={quests} />
 
                 <div className="flex justify-center mx-auto mt-24 lg:mt-96 mb-12">
                     <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg bg-black">

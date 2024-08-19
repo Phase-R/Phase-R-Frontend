@@ -60,7 +60,7 @@ export default function Page() {
                 </div>
 
                 <div className="absolute inset-0 flex items-center justify-center text-center z-30">
-                    <h1 className={`${poppins.className} text-white text-5xl lg:text-7xl font-bold drop-shadow-md`}>
+                    <h1 className={`${poppins.className} text-white text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-bold drop-shadow-md`}>
                         MENTAL HEALTH
                     </h1>
                 </div>

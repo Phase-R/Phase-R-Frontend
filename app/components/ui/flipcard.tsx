@@ -14,7 +14,7 @@ interface MCQProps {
 const FlipCard: React.FC<MCQProps> = ({ question }) => {
     const [flipped, setFlipped] = useState(false);
     const [activeQuestion, setActiveQuestion] = useState(0);
-    const [selectedOptions, setSelectedOptions] = useState<string[]>(new Array(question.length).fill(question));
+    const [selectedOptions, setSelectedOptions] = useState<string[]>(new Array(question.length).fill(null));
 
     const handleFlip = () => {
         setFlipped(!flipped);

@@ -1,10 +1,10 @@
 "use client";
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import Image from "next/image";
 import { Poppins } from "next/font/google";
 import { SlVolume2 } from "react-icons/sl";
 import Slider from '@/app/components/ui/carousel';
-import MCQ from "@/app/components/ui/mcq";
+import FlipCard from "@/app/components/ui/flipcard";
 
 // Import Poppins font
 const poppins = Poppins({
@@ -12,12 +12,14 @@ const poppins = Poppins({
     weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900']
 });
 
-const profile_pics: string[] = ["/mental_health/guy.png", "/mental_health/guy.png", "/mental_health/guy.png"];
-const desc_arr: string[] = ['"good review"', '"ok review"', '"bad review"'];
-const names: string[] = ["john jacob", "percy jackson", "thor ragnarok"];
-const questions: string[] = ["How u feeling bud?", "How are u little guy?", "Are u really lonely?"]
+const profile_pics = ["/mental_health/guy.png", "/mental_health/guy.png", "/mental_health/guy.png"];
+const desc_arr = ['"good review"', '"ok review"', '"bad review"'];
+const names = ["john jacob", "percy jackson", "thor ragnarok"];
+const quests = ["hi?", "hii??", "hiiii??"];
 
 export default function Page() {
+    const [questions, setQuestions] = useState<string[]>([]);
+
     const forestAudioRef = useRef<HTMLAudioElement | null>(null);
     const bonfireAudioRef = useRef<HTMLAudioElement | null>(null);
     const leafAudioRef = useRef<HTMLAudioElement | null>(null);
@@ -30,6 +32,31 @@ export default function Page() {
         }
     };
 
+    useEffect(() => {
+        // Fetch questions when the component mounts
+        const fetchQuestions = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/fetch_questions', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    credentials: 'include',
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    setQuestions(data.question_set); // Set the question_set array
+                } else {
+                    console.error('Failed to fetch questions');
+                }
+            } catch (error) {
+                console.error('Error fetching questions:', error);
+            }
+        };
+
+        fetchQuestions();
+    }, []);
     return (
         <>
             <div className="relative">
@@ -45,7 +72,7 @@ export default function Page() {
                 </div>
 
                 <div className="absolute inset-0 flex items-center justify-center text-center z-30">
-                    <h1 className={`${poppins.className} text-white text-5xl lg:text-7xl font-bold drop-shadow-md`}>
+                    <h1 className={`${poppins.className} text-white text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-bold drop-shadow-md`}>
                         MENTAL HEALTH
                     </h1>
                 </div>
@@ -94,7 +121,7 @@ export default function Page() {
                             className="w-full h-auto"
                         />
                         <audio ref={leafAudioRef}>
-                            <source src='/mental_health/Leaf_sounds.mp3' />
+                            <source src='/mental_health/Fireplace_sounds.mp3' />
                         </audio>
                         <SlVolume2 className="sm:text-lg absolute inset-0 m-auto text-white md:text-3xl lg:text-4xl font-bold drop-shadow-lg" />
                     </div>
@@ -110,7 +137,7 @@ export default function Page() {
                             className="w-full h-auto"
                         />
                         <audio ref={beachAudioRef}>
-                            <source src='/mental_health/Beach_sounds.mp3' />
+                            <source src='/mental_health/Fireplace_sounds.mp3' />
                         </audio>
                         <SlVolume2 className="sm:text-lg absolute inset-0 m-auto text-white md:text-3xl lg:text-4xl font-bold drop-shadow-lg" />
                     </div>
@@ -129,33 +156,16 @@ export default function Page() {
                     </div>
                 </div>
 
-                <div className="flex justify-center mx-auto mt-24">
-                    <div className="relative max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg bg-black">
-                        <Image
-                            src="/mental_health/combined_1.png"
-                            alt="combined_1"
-                            layout="responsive"
-                            height={500}
-                            width={500}
-                            className="object-cover opacity-70"
-                        />
-                        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                            <h2 className={`${poppins.className} text-white sm:text-lg text-2xl md:text-4xl font-bold text-center`}>
-                                WELL-BEING<br className="block" />
-                                QUESTIONNAIRE
-                            </h2>
-                        </div>
-                    </div>
-                </div>
+                <FlipCard question={questions} />
 
-                <div className="flex justify-center mx-auto mt-24 mb-12">
+                <div className="flex justify-center mx-auto mt-24 lg:mt-96 mb-12">
                     <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg bg-black">
                         <Image
                             src="/mental_health/combined_2.png"
                             alt="combined_2"
                             layout="responsive"
-                            height={500}
-                            width={500}
+                            height={1}
+                            width={1}
                             className="object-cover opacity-70"
                         />
                         <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
@@ -194,17 +204,12 @@ export default function Page() {
                     </div>
                 </div>
 
-                <div className="mt-24 mb-12">
-                    <Slider
-                        images={profile_pics}
-                        description={desc_arr}
-                        sideText={names}
-                    />
-                </div>
+                <h2 className={`${poppins.className} text-white text-lg md:text-xl lg:text-2xl font-light italic text-center mt-2`}>
+                    Glowing testimonials from our valued users..
+                </h2>
 
-                <div className="mt-24 mb-12">
-                    <MCQ question={questions} />
-                </div>
+                <Slider description={desc_arr} images={profile_pics} sideText={names} />
+
             </div>
         </>
     );

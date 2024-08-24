@@ -1,5 +1,4 @@
 'use client';
-
 import Link from "next/link";
 import { Poppins } from "next/font/google";
 import { useState, FormEvent } from "react";
@@ -9,7 +8,6 @@ const poppins = Poppins({ subsets: ['latin'], weight: ["100", "200", "300", "400
 
 const ForgotPasswordPage = () => {
     const router = useRouter();
-
     const [divState, setDivState] = useState('active');
     const [errState, setErrState] = useState('error-free');
     const [errMsg, setErrMsg] = useState('');

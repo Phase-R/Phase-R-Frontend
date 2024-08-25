@@ -6,6 +6,7 @@ import { Poppins, Montserrat } from "next/font/google";
 import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import AppleIcon from '@mui/icons-material/Apple';
+import { RiLockPasswordLine } from "react-icons/ri";
 import Link from "next/link";
 import { useAuthStore } from "@/app/store/store";
 import { useRouter } from "next/navigation";
@@ -91,7 +92,9 @@ const LoginForm = () => {
 							</div>
 
 							<div className="flex gap-2 items-center border-b-2 border-dashed my-5">
-								<Image src="/login_page/login-form-icon.svg" alt="mail icon" width={30} height={30} className="sm:w-[40px] sm:h-[40px]" />
+								<div className="w-[35px] h-[35px] flex items-center justify-center transform scale-75">
+									<RiLockPasswordLine className="text-white w-[40px] h-[40px] md:w-[50px] md:h-[50px] lg:w-[60px] h-[60px]" />
+								</div>
 								<input
 									type="password"
 									placeholder="Enter Password"

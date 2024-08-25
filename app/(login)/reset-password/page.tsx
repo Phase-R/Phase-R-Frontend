@@ -104,7 +104,9 @@ const ResetPasswordPage = () => {
                 </div>
                 <form className="mt-10 text-xs sm:text-sm w-full" onSubmit={onHandleSubmit}>
                     <div className="flex gap-2 items-center border-b-2 border-dashed border-white my-5">
-                        <MdOutlinePassword className="text-white sm:w-[40px] sm:h-[40px]" />
+                        <div className="w-[35px] h-[35px] flex items-center justify-center transform scale-75">
+                            <MdOutlinePassword className="text-white w-[40px] h-[40px] md:w-[50px] md:h-[50px] lg:w-[60px] h-[60px]" />
+                        </div>
                         <input
                             type="text"
                             placeholder="Enter OTP"
@@ -114,7 +116,9 @@ const ResetPasswordPage = () => {
                         />
                     </div>
                     <div className="flex gap-2 items-center border-b-2 border-dashed border-white my-5">
-                        <RiLockPasswordLine className="text-white sm:w-[40px] sm:h-[40px]" />
+                        <div className="w-[35px] h-[35px] flex items-center justify-center transform scale-75">
+                            <RiLockPasswordLine className="text-white w-[40px] h-[40px] md:w-[50px] md:h-[50px] lg:w-[60px] h-[60px]" />
+                        </div>
                         <input
                             type="password"
                             placeholder="Enter New Password"
@@ -124,7 +128,9 @@ const ResetPasswordPage = () => {
                         />
                     </div>
                     <div className="flex gap-2 items-center border-b-2 border-dashed border-white my-5">
-                        <RiLockPasswordLine className="text-white sm:w-[40px] sm:h-[40px]" />
+                        <div className="w-[35px] h-[35px] flex items-center justify-center transform scale-75">
+                            <RiLockPasswordLine className="text-white w-[40px] h-[40px] md:w-[50px] md:h-[50px] lg:w-[60px] h-[60px]" />
+                        </div>
                         <input
                             type="password"
                             placeholder="Confirm New Password"

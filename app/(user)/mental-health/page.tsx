@@ -192,7 +192,7 @@ export default function Page() {
                             <img src="/mental_health/meditate.png" alt="meditation" className="w-8 h-8 lg:w-16 lg:h-16" />
                         </div>
                         <h2 className={`${poppins.className} text-white text-lg md:text-xl font-bold text-center mt-2`}>
-                        MEDITATION
+                            MEDITATION
                         </h2>
                     </div>
                     <div className="flex flex-col items-center">
@@ -212,6 +212,8 @@ export default function Page() {
                 <Slider description={desc_arr} images={profile_pics} sideText={names} />
 
             </div>
+
+
         </>
     );
 }

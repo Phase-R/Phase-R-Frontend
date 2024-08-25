@@ -1,5 +1,6 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+
+import React, { useRef, useEffect, useState } from 'react';
 import Image from "next/image";
 import { Poppins } from "next/font/google";
 import { SlVolume2 } from "react-icons/sl";
@@ -19,6 +20,18 @@ const quests = ["hi?", "hii??", "hiiii??"];
 
 export default function Page() {
     const [questions, setQuestions] = useState<string[]>([]);
+
+    const forestAudioRef = useRef<HTMLAudioElement | null>(null);
+    const bonfireAudioRef = useRef<HTMLAudioElement | null>(null);
+    const leafAudioRef = useRef<HTMLAudioElement | null>(null);
+    const beachAudioRef = useRef<HTMLAudioElement | null>(null);
+    const waterfallAudioRef = useRef<HTMLAudioElement | null>(null);
+
+    const playAudio = (audioRef: React.RefObject<HTMLAudioElement>) => {
+        if (audioRef.current) {
+            audioRef.current.play();
+        }
+    };
 
     useEffect(() => {
         // Fetch questions when the component mounts
@@ -60,7 +73,7 @@ export default function Page() {
                 </div>
 
                 <div className="absolute inset-0 flex items-center justify-center text-center z-30">
-                    <h1 className={`${poppins.className} text-white text-5xl lg:text-7xl font-bold drop-shadow-md`}>
+                    <h1 className={`${poppins.className} text-white text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-bold drop-shadow-md`}>
                         MENTAL HEALTH
                     </h1>
                 </div>
@@ -74,7 +87,7 @@ export default function Page() {
                 </h1>
 
                 <div className="flex justify-around max-w-3xl mx-auto gap-2 sm:gap-3 md:gap-4">
-                    <div className="relative w-1/5 p-2 sm:p-3">
+                    <div className="relative w-1/5 p-2 sm:p-3" onClick={() => playAudio(forestAudioRef)}>
                         <Image
                             src="/mental_health/forest-sunset.png"
                             alt="forest-sunset"
@@ -82,9 +95,12 @@ export default function Page() {
                             height={50}
                             className="w-full h-auto"
                         />
+                        <audio ref={forestAudioRef}>
+                            <source src='/mental_health/Forest.mp3' />
+                        </audio>
                         <SlVolume2 className="sm:text-lg absolute inset-0 m-auto text-white md:text-3xl lg:text-4xl font-bold drop-shadow-lg" />
                     </div>
-                    <div className="relative w-1/5 p-2 sm:p-3">
+                    <div className="relative w-1/5 p-2 sm:p-3" onClick={() => playAudio(bonfireAudioRef)}>
                         <Image
                             src="/mental_health/bonfire.png"
                             alt="bonfire"
@@ -92,9 +108,12 @@ export default function Page() {
                             height={50}
                             className="w-full h-auto"
                         />
+                        <audio ref={bonfireAudioRef}>
+                            <source src='/mental_health/Fireplace_sounds.mp3' />
+                        </audio>
                         <SlVolume2 className="sm:text-lg absolute inset-0 m-auto text-white md:text-3xl lg:text-4xl font-bold drop-shadow-lg" />
                     </div>
-                    <div className="relative w-1/5 p-2 sm:p-3">
+                    <div className="relative w-1/5 p-2 sm:p-3" onClick={() => playAudio(leafAudioRef)}>
                         <Image
                             src="/mental_health/leaf.png"
                             alt="leaf"
@@ -102,12 +121,15 @@ export default function Page() {
                             height={50}
                             className="w-full h-auto"
                         />
+                        <audio ref={leafAudioRef}>
+                            <source src='/mental_health/Fireplace_sounds.mp3' />
+                        </audio>
                         <SlVolume2 className="sm:text-lg absolute inset-0 m-auto text-white md:text-3xl lg:text-4xl font-bold drop-shadow-lg" />
                     </div>
                 </div>
 
                 <div className="flex justify-evenly max-w-3xl mx-auto gap-2 sm:gap-3 md:gap-4">
-                    <div className="relative w-1/5 p-2 sm:p-3">
+                    <div className="relative w-1/5 p-2 sm:p-3" onClick={() => playAudio(beachAudioRef)}>
                         <Image
                             src="/mental_health/beach.png"
                             alt="Beach"
@@ -115,9 +137,12 @@ export default function Page() {
                             height={50}
                             className="w-full h-auto"
                         />
+                        <audio ref={beachAudioRef}>
+                            <source src='/mental_health/Fireplace_sounds.mp3' />
+                        </audio>
                         <SlVolume2 className="sm:text-lg absolute inset-0 m-auto text-white md:text-3xl lg:text-4xl font-bold drop-shadow-lg" />
                     </div>
-                    <div className="relative w-1/5 p-2 sm:p-3">
+                    <div className="relative w-1/5 p-2 sm:p-3" onClick={() => playAudio(waterfallAudioRef)}>
                         <Image
                             src="/mental_health/waterfall.png"
                             alt="Waterfall"
@@ -125,6 +150,9 @@ export default function Page() {
                             height={50}
                             className="w-full h-auto"
                         />
+                        <audio ref={waterfallAudioRef}>
+                            <source src='/mental_health/Waterfall_sounds.mp3' />
+                        </audio>
                         <SlVolume2 className="sm:text-xl absolute inset-0 m-auto text-white md:text-3xl lg:text-4xl font-bold drop-shadow-lg" />
                     </div>
                 </div>
@@ -164,15 +192,15 @@ export default function Page() {
                             <img src="/mental_health/meditate.png" alt="meditation" className="w-8 h-8 lg:w-16 lg:h-16" />
                         </div>
                         <h2 className={`${poppins.className} text-white text-lg md:text-xl font-bold text-center mt-2`}>
-                            MEDITATION
+                        MEDITATION
                         </h2>
                     </div>
                     <div className="flex flex-col items-center">
                         <div className="flex items-center justify-center w-20 h-20 lg:w-32 lg:h-32 bg-[#FF8A00] rounded-full">
-                            <img src="/mental_health/yoga.png" alt="yoga" className="w-8 h-8 lg:w-16 lg:h-16" />
+                            <img src="/mental_health/yoga.png" alt="exercise" className="w-8 h-8 lg:w-16 lg:h-16" />
                         </div>
                         <h2 className={`${poppins.className} text-white text-lg md:text-xl font-bold text-center mt-2`}>
-                            YOGA
+                            EXERCISE
                         </h2>
                     </div>
                 </div>

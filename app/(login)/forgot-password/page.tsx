@@ -1,12 +1,15 @@
 'use client';
 import Link from "next/link";
-import { Poppins } from "next/font/google";
+import Image from "next/image";
+import { Poppins, Montserrat } from "next/font/google";
 import { useState, FormEvent } from "react";
 import { useRouter } from 'next/navigation';
 
-const poppins = Poppins({ subsets: ['latin'], weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"] });
+const poppins = Poppins({ subsets: ['latin'], weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"] })
+const montserrat = Montserrat({ subsets: ["latin"], weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"] });
 
 const ForgotPasswordPage = () => {
+    const [email, setEmail] = useState('');
     const router = useRouter();
     const [divState, setDivState] = useState('active');
     const [errState, setErrState] = useState('error-free');
@@ -54,30 +57,37 @@ const ForgotPasswordPage = () => {
 
     return (
         <>
-            <div className="absolute z-20 left-0 right-0 mx-auto">
-                <div className="flex flex-col items-center justify-center h-screen">
-                    <div className="w-[350px] md:w-[500px] bg-primary-black-3 mx-auto shadow-md shadow-[#222] p-5">
-                        <h1 className={`text-center text-2xl font-bold ${poppins.className}`}>FORGOT PASSWORD</h1>
-                        <Link href="/login">
-                            <p className="text-center text-sm underline text-primary-orange-2 my-2">Remembered? Sign In Here</p>
+            <div className="relative min-h-screen bg-cover bg-center" style={{ backgroundImage: "url('/login_page/login-4.png')" }}>
+                <div className="absolute inset-0 bg-black opacity-50"></div>
+                <div className="bg-[#00000099] backdrop-blur absolute top-0 left-0 right-0 bottom-0 my-auto mx-auto w-[90%] sm:w-[70%] md:w-[60%] lg:w-[45%] h-[50vh] h-[50vh] px-5 sm:px-10 md:px-15 lg:px-20 py-10">
+                    <div className="text-xl sm:text-2xl">
+                        <h1 className={`${poppins.className} font-bold text-center`}>FORGOT PASSWORD</h1>
+                        <Link href="/login" className="text-center text-sm hover-underline-animation">
+                            Return to Sign In?
                         </Link>
-                        <form onSubmit={onHandleSubmit}>
-                            <input type='email' name="email" placeholder="Email" className="w-[100%] bg-primary-black-2 p-2 mt-5 rounded-md text-white placeholder:text-primary-orange-2 outline-none" />
-                            <div className="flex justify-center">
-                                <button type="submit" className="py-2 px-5 mt-5 bg-primary-orange-3 border-2 border-[#222] rounded-md">
-                                    {divState === 'loading' ? (
-                                        <span>{loadingMessage}</span>
-                                    ) : (
-                                        <span>Send OTP</span>
-                                    )}
-                                </button>
-                            </div>
-                        </form>
-
-                        {errState === 'error' && (
-                            <div className="text-red-500 text-sm mt-2">{errMsg}</div>
-                        )}
                     </div>
+                    <form className="mt-10 text-xs sm:text-sm" onSubmit={onHandleSubmit}>
+                        <div className="flex gap-2 items-center border-b-2 border-dashed my-5">
+                            <Image src="/login_page/login-form-icon.svg" alt="mail icon" width={30} height={30} className="sm:w-[40px] sm:h-[40px]" />
+                            <input
+                                type="email"
+                                placeholder="johnson@gmail.com"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                className="font-bold w-[100%] p-2 outline-none my-2 bg-transparent placeholder:text-white text-white"
+                            />
+                        </div>
+                        <button
+                            type="submit"
+                            className={`${montserrat.className} mt-10 group font-bold bg-transparent text-white border-2 border-white transition all ease-in-out hover:text-black hover:bg-white py-5 px-10 rounded-full flex items-center gap-2 mx-auto`}
+                        >
+                            Continue <span className="text-xl transition all ease-in-out group-hover:translate-x-1">&rarr;</span>
+                        </button>
+                    </form>
+
+                    {errState === 'error' && (
+                        <div className="text-red-500 text-sm mt-2">{errMsg}</div>
+                    )}
                 </div>
             </div>
         </>

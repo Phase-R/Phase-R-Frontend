@@ -1,15 +1,23 @@
 'use client';
-
+import Link from "next/link";
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState, FormEvent } from 'react';
-import { Poppins } from "next/font/google";
+import { Poppins, Montserrat } from "next/font/google";
+import { RiLockPasswordLine } from "react-icons/ri";
+import { MdOutlinePassword } from "react-icons/md";
+import Image from "next/image";
 
 const poppins = Poppins({ subsets: ['latin'], weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"] });
+const montserrat = Montserrat({ subsets: ["latin"], weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"] });
 
 const ResetPasswordPage = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
-    const email = searchParams.get('email');
+    const email = searchParams?.get('email') || '';
+
+    const [otp, setOtp] = useState('');
+    const [newPassword, setNewPassword] = useState('');
+    const [confirmNewPassword, setConfirmNewPassword] = useState('');
 
     const [divState, setDivState] = useState('active');
     const [errState, setErrState] = useState('error-free');
@@ -20,11 +28,6 @@ const ResetPasswordPage = () => {
     const onHandleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setDivState("loading");
-
-        const formData = new FormData(event.currentTarget);
-        const otp = formData.get('otp') as string;
-        const newPassword = formData.get('newPassword') as string;
-        const confirmNewPassword = formData.get('confirmNewPassword') as string;
 
         if (newPassword !== confirmNewPassword) {
             setErrState('error');
@@ -46,18 +49,15 @@ const ResetPasswordPage = () => {
                 setLoadingMessage('Password Reset Successful. Redirecting to Login...');
                 setDivState('active');
                 router.push('/login');
-            }
-            else if (response.status == 405) {
+            } else if (response.status === 405) {
                 setErrState('error');
                 setErrMsg('Invalid OTP, click to regenerate OTP');
                 setDivState('active');
-            }
-            else if (response.status == 401) {
+            } else if (response.status === 401) {
                 setErrState('error');
-                setErrMsg('Cannot reset same password, click to regenerate OTP');
+                setErrMsg('Cannot reset the same password, click to regenerate OTP');
                 setDivState('active');
-            }
-            else {
+            } else {
                 setErrState('error');
                 setErrMsg('Server error');
                 setDivState('active');
@@ -93,42 +93,69 @@ const ResetPasswordPage = () => {
     };
 
     return (
-        <>
-            <div className="absolute z-20 left-0 right-0 mx-auto">
-                <div className="flex flex-col items-center justify-center h-screen">
-                    <div className="w-[350px] md:w-[500px] bg-primary-black-3 mx-auto shadow-md shadow-[#222] p-5">
-                        <h1 className={`text-center text-2xl font-bold ${poppins.className}`}>RESET PASSWORD</h1>
-                        <form onSubmit={onHandleSubmit}>
-                            <input type='text' name="otp" placeholder="OTP" className="w-[100%] bg-primary-black-2 p-2 mt-5 rounded-md text-white placeholder:text-primary-orange-2 outline-none" required />
-                            <input type='password' name="newPassword" placeholder="New Password" className="w-[100%] bg-primary-black-2 p-2 mt-5 rounded-md text-white placeholder:text-primary-orange-2 outline-none" required />
-                            <input type='password' name="confirmNewPassword" placeholder="Confirm New Password" className="w-[100%] bg-primary-black-2 p-2 mt-5 rounded-md text-white placeholder:text-primary-orange-2 outline-none" required />
-                            <div className="flex justify-center">
-                                <button type="submit" className="py-2 px-5 mt-5 bg-primary-orange-3 border-2 border-[#222] rounded-md">
-                                    {divState === 'loading' ? (
-                                        <span>{loadingMessage}</span>
-                                    ) : (
-                                        <span>Reset Password</span>
-                                    )}
-                                </button>
-                            </div>
-                        </form>
-
-                        {errState === 'error' && (
-                            <div className="text-red-500 text-sm mt-2">{errMsg}</div>
-                        )}
-                        <div className="text-center mt-2">
-                            <button onClick={onHandleRegenerateOtp} className="underline text-primary-orange-2">
-                                Regenerate OTP
-                            </button>
-                            {otpRegenerateMsg && (
-                                <div className="text-primary-orange-2 text-sm mt-2">{otpRegenerateMsg}</div>
-                            )}
-                        </div>
+        <div className="relative min-h-screen bg-cover bg-center" style={{ backgroundImage: "url('/login_page/login-4.png')" }}>
+            <div className="absolute inset-0 bg-black opacity-50"></div>
+            <div className="bg-[#00000099] backdrop-blur absolute top-0 left-0 right-0 bottom-0 my-auto mx-auto w-[90%] sm:w-[70%] md:w-[60%] lg:w-[45%] h-[80vh] px-5 sm:px-10 md:px-15 lg:px-20 py-10">
+                <div className="text-xl sm:text-2xl">
+                    <h1 className={`${poppins.className}font-bold text-white`}>RESET PASSWORD</h1>
+                    <Link href="/login" className="text-sm text-white hover-underline-animation">
+                        Return to Sign In?
+                    </Link>
+                </div>
+                <form className="mt-10 text-xs sm:text-sm w-full" onSubmit={onHandleSubmit}>
+                    <div className="flex gap-2 items-center border-b-2 border-dashed border-white my-5">
+                        <MdOutlinePassword className="text-white sm:w-[40px] sm:h-[40px]" />
+                        <input
+                            type="text"
+                            placeholder="Enter OTP"
+                            value={otp}
+                            onChange={(e) => setOtp(e.target.value)}
+                            className="font-bold w-full p-2 outline-none my-2 bg-transparent placeholder:text-white text-white"
+                        />
                     </div>
+                    <div className="flex gap-2 items-center border-b-2 border-dashed border-white my-5">
+                        <RiLockPasswordLine className="text-white sm:w-[40px] sm:h-[40px]" />
+                        <input
+                            type="password"
+                            placeholder="Enter New Password"
+                            value={newPassword}
+                            onChange={(e) => setNewPassword(e.target.value)}
+                            className="font-bold w-full p-2 outline-none my-2 bg-transparent placeholder:text-white text-white"
+                        />
+                    </div>
+                    <div className="flex gap-2 items-center border-b-2 border-dashed border-white my-5">
+                        <RiLockPasswordLine className="text-white sm:w-[40px] sm:h-[40px]" />
+                        <input
+                            type="password"
+                            placeholder="Confirm New Password"
+                            value={confirmNewPassword}
+                            onChange={(e) => setConfirmNewPassword(e.target.value)}
+                            className="font-bold w-full p-2 outline-none my-2 bg-transparent placeholder:text-white text-white"
+                        />
+                    </div>
+                    <button
+                        type="submit"
+                        className={`${montserrat.className} mt-10 group font-bold bg-transparent text-white border-2 border-white transition-all ease-in-out hover:text-black hover:bg-white py-5 px-10 rounded-full flex items-center gap-2 mx-auto`}
+                    >
+                        Continue <span className="text-xl transition-all ease-in-out group-hover:translate-x-1">&rarr;</span>
+                    </button>
+                </form>
+
+                {errState === 'error' && (
+                    <div className="text-red-500 text-sm mt-2 text-center">{errMsg}</div>
+                )}
+                <div className="text-center mt-4">
+                    <button onClick={onHandleRegenerateOtp} className="hover-underline-animation text-white">
+                        Regenerate OTP
+                    </button>
+                    {otpRegenerateMsg && (
+                        <div className="mt-2 text-white">{otpRegenerateMsg}</div>
+                    )}
                 </div>
             </div>
-        </>
-    )
-}
+        </div>
+
+    );
+};
 
 export default ResetPasswordPage;

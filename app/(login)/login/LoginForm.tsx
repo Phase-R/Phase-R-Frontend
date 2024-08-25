@@ -73,7 +73,7 @@ const LoginForm = () => {
 			{divState === "active" ? (
 				<div className="relative min-h-screen bg-cover bg-center" style={{ backgroundImage: "url('/login_page/login-4.png')" }}>
 					<div className="absolute inset-0 bg-black opacity-50"></div>
-					<div className="bg-[#00000099] sm:bg-[#000000CC] backdrop-blur absolute top-0 left-0 right-0 bottom-0 my-auto mx-auto w-[90%] sm:w-[70%] md:w-[60%] lg:w-[45%] h-[80vh] sm:h-[85vh] md:h-[90vh] px-5 sm:px-10 md:px-15 lg:px-20 py-10">
+					<div className="bg-[#00000099] backdrop-blur absolute top-0 left-0 right-0 bottom-0 my-auto mx-auto w-[90%] sm:w-[70%] md:w-[60%] lg:w-[45%] h-[85vh] lg:h-[90vh] px-5 sm:px-10 md:px-15 lg:px-20 py-10">
 						<div className="text-xl sm:text-2xl">
 							<h1 className={`${poppins.className} font-bold`}>PHASE-R</h1>
 							<h2 className={`${poppins.className}`}>Welcome Back!</h2>
@@ -134,6 +134,12 @@ const LoginForm = () => {
 								Do not have an account?{' '}
 								<Link href="/signup" className="font-bold text-md hover-underline-animation">
 									Register Now
+								</Link>
+							</h1>
+							<h1>
+								Forgot password?{' '}
+								<Link href="/forgot-password" className="font-bold text-md hover-underline-animation">
+									Click here
 								</Link>
 							</h1>
 						</div>

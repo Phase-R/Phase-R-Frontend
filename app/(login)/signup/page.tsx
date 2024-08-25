@@ -74,8 +74,8 @@ const SignupPage = () => {
     return (
         <>
             <div className="relative min-h-screen bg-cover bg-center" style={{ backgroundImage: "url('/login_page/login-4.png')" }}>
-                <div className="absolute inset-0 bg-black opacity-40"></div>
-                <div className="bg-[#000000CC] backdrop-blur absolute top-0 left-0 right-0 bottom-0 my-auto mx-auto w-[90%] sm:w-[70%] md:w-[60%] lg:w-[45%] h-[80vh] sm:h-[85vh] md:h-[90vh] px-5 sm:px-10 md:px-15 lg:px-20 py-10">
+                <div className="absolute inset-0 bg-black opacity-50"></div>
+                <div className="bg-[#00000099] backdrop-blur absolute top-0 left-0 right-0 bottom-0 my-auto mx-auto w-[90%] sm:w-[70%] md:w-[60%] lg:w-[45%] h-[75vh] md:h-[80vh] lg:h-[85vh] px-5 sm:px-10 md:px-15 lg:px-20 py-10">
                     <div className="text-xl sm:text-2xl">
                         <h1 className={`${poppins.className} font-bold text-center`}>SIGN UP</h1>
                         <Link href="/login" className="text-center text-sm hover-underline-animation">
@@ -140,8 +140,6 @@ const SignupPage = () => {
                     )}
                 </div>
             </div>
-
-
         </>
     )
 }

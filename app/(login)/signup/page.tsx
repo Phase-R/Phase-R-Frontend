@@ -73,75 +73,81 @@ const SignupPage = () => {
 
     return (
         <>
-            <div className="relative min-h-screen bg-cover bg-center" style={{ backgroundImage: "url('/login_page/login-4.png')" }}>
+            <div
+                className="relative min-h-screen bg-cover bg-center bg-fixed"
+                style={{ backgroundImage: "url('/login_page/login-4.png')" }}
+            >
                 <div className="absolute inset-0 bg-black opacity-50"></div>
-                <div className="bg-[#00000099] backdrop-blur absolute top-0 left-0 right-0 bottom-0 my-auto mx-auto w-[90%] sm:w-[70%] md:w-[60%] lg:w-[45%] h-[75vh] md:h-[80vh] lg:h-[85vh] px-5 sm:px-10 md:px-15 lg:px-20 py-10">
-                    <div className="text-xl sm:text-2xl">
-                        <h1 className={`${poppins.className} font-bold text-center`}>SIGN UP</h1>
-                        <Link href="/login" className="text-center text-sm hover-underline-animation">
-                            Return to Sign In?
-                        </Link>
-                    </div>
-                    <form className="mt-10 text-xs sm:text-sm" onSubmit={onHandleSubmit}>
-                        <input
-                            type="text"
-                            name="username"
-                            placeholder="Username"
-                            className="font-bold w-[100%] p-2 outline-none my-2 bg-transparent placeholder:text-white text-white border border-[rgba(255,255,255,0.2)] rounded-md"
-                        />
-                        <input
-                            type="text"
-                            name="fname"
-                            placeholder="First Name"
-                            className="font-bold w-[100%] p-2 outline-none my-2 bg-transparent placeholder:text-white text-white border border-[rgba(255,255,255,0.2)] rounded-md"
-                        />
-                        <input
-                            type="text"
-                            name="lname"
-                            placeholder="Last Name"
-                            className="font-bold w-[100%] p-2 outline-none my-2 bg-transparent placeholder:text-white text-white border border-[rgba(255,255,255,0.2)] rounded-md"
-                        />
-                        <input
-                            type="email"
-                            name="email"
-                            placeholder="Email"
-                            className="font-bold w-[100%] p-2 outline-none my-2 bg-transparent placeholder:text-white text-white border border-[rgba(255,255,255,0.2)] rounded-md"
-                        />
-                        <input
-                            type="text"
-                            name="age"
-                            placeholder="Age"
-                            className="font-bold w-[100%] p-2 outline-none my-2 bg-transparent placeholder:text-white text-white border border-[rgba(255,255,255,0.2)] rounded-md"
-                        />
-                        <div className="flex justify-between gap-5">
-                            <input
-                                type="password"
-                                name="password"
-                                placeholder="Password"
-                                className="font-bold w-[100%] p-2 outline-none my-2 bg-transparent placeholder:text-white text-white border border-[rgba(255,255,255,0.2)] rounded-md"
-                            />
-                            <input
-                                type="password"
-                                name="confirmPassword"
-                                placeholder="Confirm Password"
-                                className="font-bold w-[100%] p-2 outline-none my-2 bg-transparent placeholder:text-white text-white border border-[rgba(255,255,255,0.2)] rounded-md"
-                            />
+                <div className="flex justify-center items-center min-h-screen">
+                    <div className="bg-[#00000099] backdrop-blur w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-md xl:max-w-lg px-4 sm:px-8 md:px-12 lg:px-16 py-6 sm:py-8 md:py-10 lg:py-12 rounded-lg mb-6 md:mb-8 lg:mb-10 mt-4">
+                        <div className="text-lg sm:text-xl md:text-2xl mb-4 sm:mb-5 md:mb-6 text-center">
+                            <h1 className={`${poppins.className} font-bold text-white`}>SIGN UP</h1>
+                            <Link href="/login" className="text-sm text-white hover-underline-animation">
+                                Return to Sign In?
+                            </Link>
                         </div>
-                        <button
-                            type="submit"
-                            className={`${montserrat.className} mt-10 group font-bold bg-transparent text-white border-2 border-white transition all ease-in-out hover:text-black hover:bg-white py-5 px-10 rounded-full flex items-center gap-2 mx-auto`}
-                        >
-                            Sign Up <span className="text-xl transition all ease-in-out group-hover:translate-x-1">&rarr;</span>
-                        </button>
-                    </form>
+                        <form className="mt-8 text-xs sm:text-xs md:text-sm" onSubmit={onHandleSubmit}>
+                            <input
+                                type="text"
+                                name="username"
+                                placeholder="Username"
+                                className="font-bold w-full p-2 outline-none my-1 sm:my-2 bg-transparent placeholder:text-white text-white border border-[rgba(255,255,255,0.2)] rounded-md"
+                            />
+                            <input
+                                type="text"
+                                name="fname"
+                                placeholder="First Name"
+                                className="font-bold w-full p-2 outline-none my-1 sm:my-2 bg-transparent placeholder:text-white text-white border border-[rgba(255,255,255,0.2)] rounded-md"
+                            />
+                            <input
+                                type="text"
+                                name="lname"
+                                placeholder="Last Name"
+                                className="font-bold w-full p-2 outline-none my-1 sm:my-2 bg-transparent placeholder:text-white text-white border border-[rgba(255,255,255,0.2)] rounded-md"
+                            />
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="Email"
+                                className="font-bold w-full p-2 outline-none my-1 sm:my-2 bg-transparent placeholder:text-white text-white border border-[rgba(255,255,255,0.2)] rounded-md"
+                            />
+                            <input
+                                type="text"
+                                name="age"
+                                placeholder="Age"
+                                className="font-bold w-full p-2 outline-none my-1 sm:my-2 bg-transparent placeholder:text-white text-white border border-[rgba(255,255,255,0.2)] rounded-md"
+                            />
+                            <div className="flex flex-col gap-2 sm:gap-3">
+                                <input
+                                    type="password"
+                                    name="password"
+                                    placeholder="Password"
+                                    className="font-bold w-full p-2 outline-none my-1 sm:my-2 bg-transparent placeholder:text-white text-white border border-[rgba(255,255,255,0.2)] rounded-md"
+                                />
+                                <input
+                                    type="password"
+                                    name="confirmPassword"
+                                    placeholder="Confirm Password"
+                                    className="font-bold w-full p-2 outline-none my-1 sm:my-2 bg-transparent placeholder:text-white text-white border border-[rgba(255,255,255,0.2)] rounded-md"
+                                />
+                            </div>
+                            <button
+                                type="submit"
+                                className={`${montserrat.className} mt-6 sm:mt-8 group font-bold bg-transparent text-white border-2 border-white transition-all ease-in-out hover:text-black hover:bg-white py-4 sm:py-5 px-8 sm:px-10 text-xs sm:text-sm rounded-full flex items-center gap-2 mx-auto`}
+                            >
+                                Sign Up <span className="text-lg sm:text-xl transition-all ease-in-out group-hover:translate-x-1">&rarr;</span>
+                            </button>
+                        </form>
 
-                    {errState === 'error' && (
-                        <div className="text-red-500 text-sm mt-2">{errMsg}</div>
-                    )}
+                        {errState === 'error' && (
+                            <div className="text-red-500 text-sm mt-2 text-center">{errMsg}</div>
+                        )}
+                    </div>
                 </div>
             </div>
         </>
-    )
+    );
+
 }
 
 export default SignupPage;

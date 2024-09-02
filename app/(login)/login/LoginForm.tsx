@@ -74,6 +74,7 @@ const LoginForm = () => {
 
 	return (
 		<>
+			{/*adjust the container size for medium screens(i pad), adjust margin bottom and remove scrollbar for large screens*/}
 			<div className="relative min-h-screen bg-cover bg-center bg-fixed" style={{ backgroundImage: "url('/login_page/login-4.png')" }}>
 				<div className="absolute inset-0 bg-black opacity-50"></div>
 				{divState === "active" ? (

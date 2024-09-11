@@ -7,15 +7,21 @@ interface AuthState {
   getIsAuthenticated: () => boolean;
 }
 
-
 interface NutritionState {
-  BMI: number | null;     // BMI state
-  Goal_weight: string;    // Goal weight
-  Diet: string;           // Diet type
-  setBMI: (bmi: number) => void;                // Action to set BMI
-  setGoalWeight: (goalWeight: string) => void;  // Action to set goal weight
-  setDiet: (diet: string) => void;              // Action to set diet choice
+  BMI: number | null;
+  Goal_weight: string;
+  Diet: string;
+  EstimatedTime: string;
+  Calories: string;
+  ActivityLevel: string;
+  setBMI: (bmi: number) => void;
+  setGoalWeight: (goalWeight: string) => void;
+  setDiet: (diet: string) => void;
+  setEstimatedTime: (time: string) => void;
+  setCalories: (calories: string) => void;
+  setActivityLevel: (level: string) => void;
 }
+
 
 const useAuthStore = create<AuthState>()(
   persist(
@@ -34,17 +40,23 @@ const useAuthStore = create<AuthState>()(
 const useNutritionStore = create<NutritionState>()(
   persist(
     (set) => ({
-      BMI: null,          // Initial state
-      Goal_weight: '',    // Initial state
-      Diet: '',           // Initial state
+      BMI: null,
+      Goal_weight: '',
+      Diet: '',
+      EstimatedTime: '',  // Initial state
+      Calories: '',       // Initial state
+      ActivityLevel: '',  // Initial state
 
-      setBMI: (bmi) => set(() => ({ BMI: bmi })),              // Action to update BMI
-      setGoalWeight: (goalWeight) => set(() => ({ Goal_weight: goalWeight })),  // Action to update Goal Weight
-      setDiet: (diet) => set(() => ({ Diet: diet })),          // Action to update Diet
+      setBMI: (bmi) => set(() => ({ BMI: bmi })),
+      setGoalWeight: (goalWeight) => set(() => ({ Goal_weight: goalWeight })),
+      setDiet: (diet) => set(() => ({ Diet: diet })),
+      setEstimatedTime: (time) => set(() => ({ EstimatedTime: time })), // Action to update EstimatedTime
+      setCalories: (calories) => set(() => ({ Calories: calories })), // Action to update Calories
+      setActivityLevel: (level) => set(() => ({ ActivityLevel: level })), // Action to update ActivityLevel
     }),
     {
       name: 'nutrition-storage', // Key for local storage
-      storage: createJSONStorage(() => localStorage),  // Persist in localStorage
+      storage: createJSONStorage(() => localStorage),
     }
   )
 );

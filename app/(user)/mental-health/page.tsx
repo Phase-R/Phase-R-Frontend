@@ -4,7 +4,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import Image from "next/image";
 import { Poppins } from "next/font/google";
 import { SlVolume2 } from "react-icons/sl";
-import Slider from '@/app/components/ui/carousel';
+import Slider from '@/app/components/ui/slider';
 import FlipCard from "@/app/components/ui/flipcard";
 
 // Import Poppins font

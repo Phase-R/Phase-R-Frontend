@@ -113,20 +113,20 @@ export default function Fitness() {
                     CARDIO
                 </h1>
 
-                <div className="flex items-center justify-center relative w-full mx-auto">
-                    <div className="mx-4 w-full">
-                        <Carousel className="w-full max-w-full">
-                            <CarouselContent className="-ml-1">
-                                {cardio_imgs.map((image, index) => (
-                                    <CarouselItem key={index} className="pl-1 basis-1/2 md:basis-1/3 lg:basis-1/3">
-                                        <div className="p-1">
-                                            <img src={image.src} alt={image.alt} className="aspect-square object-cover w-full h-full" />
-                                        </div>
-                                    </CarouselItem>
-                                ))}
-                            </CarouselContent>
-                        </Carousel>
-                    </div>
+                <div className="flex items-center justify-center relative mx-auto">
+                    <Carousel className="w-full md:max-w-2xl lg:max-w-4xl">
+                        <CarouselContent className="-ml-1">
+                            {cardio_imgs.map((image, index) => (
+                                <CarouselItem key={index} className="pl-1 basis-1/2 md:basis-1/3 lg:basis-1/3">
+                                    <div className="p-1">
+                                        <img src={image.src} alt={image.alt} className="aspect-square object-cover w-full h-full" />
+                                    </div>
+                                </CarouselItem>
+                            ))}
+                        </CarouselContent>
+                        <CarouselPrevious />
+                        <CarouselNext />
+                    </Carousel>
                 </div>
 
                 <div className="bg-[#191919] p-4 md:p-6 rounded-lg shadow-lg max-w-lg mx-auto text-white mt-6 md:mt-10 mx-4">
@@ -139,20 +139,20 @@ export default function Fitness() {
                     HIIT
                 </h1>
 
-                <div className="flex items-center justify-center relative w-full mx-auto">
-                    <div className="mx-4 w-full">
-                        <Carousel className="w-full max-w-full">
-                            <CarouselContent className="-ml-1">
-                                {hiit_imgs.map((image, index) => (
-                                    <CarouselItem key={index} className="pl-1 basis-1/2 md:basis-1/3 lg:basis-1/3">
-                                        <div className="p-1">
-                                            <img src={image.src} alt={image.alt} className="aspect-square object-cover w-full h-full" />
-                                        </div>
-                                    </CarouselItem>
-                                ))}
-                            </CarouselContent>
-                        </Carousel>
-                    </div>
+                <div className="flex items-center justify-center relative mx-auto">
+                    <Carousel className="w-full md:max-w-2xl lg:max-w-4xl">
+                        <CarouselContent className="-ml-1">
+                            {hiit_imgs.map((image, index) => (
+                                <CarouselItem key={index} className="pl-1 basis-1/2 md:basis-1/3 lg:basis-1/3">
+                                    <div className="p-1">
+                                        <img src={image.src} alt={image.alt} className="aspect-square object-cover w-full h-full" />
+                                    </div>
+                                </CarouselItem>
+                            ))}
+                        </CarouselContent>
+                        <CarouselPrevious />
+                        <CarouselNext />
+                    </Carousel>
                 </div>
 
                 <div className="bg-[#191919] p-4 md:p-6 rounded-lg shadow-lg max-w-lg mx-auto text-white mt-6 md:mt-10 mx-4">
@@ -165,20 +165,20 @@ export default function Fitness() {
                     SWIMMING
                 </h1>
 
-                <div className="flex items-center justify-center relative w-full mx-auto">
-                    <div className="mx-4 w-full">
-                        <Carousel className="w-full max-w-full">
-                            <CarouselContent className="-ml-1">
-                                {swim_imgs.map((image, index) => (
-                                    <CarouselItem key={index} className="pl-1 basis-1/2 md:basis-1/3 lg:basis-1/3">
-                                        <div className="p-1">
-                                            <img src={image.src} alt={image.alt} className="aspect-square object-cover w-full h-full" />
-                                        </div>
-                                    </CarouselItem>
-                                ))}
-                            </CarouselContent>
-                        </Carousel>
-                    </div>
+                <div className="flex items-center justify-center relative mx-auto">
+                    <Carousel className="w-full md:max-w-2xl lg:max-w-4xl">
+                        <CarouselContent className="-ml-1">
+                            {swim_imgs.map((image, index) => (
+                                <CarouselItem key={index} className="pl-1 basis-1/2 md:basis-1/3 lg:basis-1/3">
+                                    <div className="p-1">
+                                        <img src={image.src} alt={image.alt} className="aspect-square object-cover w-full h-full" />
+                                    </div>
+                                </CarouselItem>
+                            ))}
+                        </CarouselContent>
+                        <CarouselPrevious />
+                        <CarouselNext />
+                    </Carousel>
                 </div>
 
                 <div className="bg-[#191919] p-4 md:p-6 rounded-lg shadow-lg max-w-lg mx-auto text-white mt-6 md:mt-10 mx-4">
@@ -191,20 +191,20 @@ export default function Fitness() {
                     CYCLING
                 </h1>
 
-                <div className="flex items-center justify-center relative w-full mx-auto">
-                    <div className="mx-4 w-full">
-                        <Carousel className="w-full max-w-full">
-                            <CarouselContent className="-ml-1">
-                                {cycle_imgs.map((image, index) => (
-                                    <CarouselItem key={index} className="pl-1 basis-1/2 md:basis-1/3 lg:basis-1/3">
-                                        <div className="p-1">
-                                            <img src={image.src} alt={image.alt} className="aspect-square object-cover w-full h-full" />
-                                        </div>
-                                    </CarouselItem>
-                                ))}
-                            </CarouselContent>
-                        </Carousel>
-                    </div>
+                <div className="flex items-center justify-center relative mx-auto">
+                    <Carousel className="w-full md:max-w-2xl lg:max-w-4xl">
+                        <CarouselContent className="-ml-1">
+                            {cycle_imgs.map((image, index) => (
+                                <CarouselItem key={index} className="pl-1 basis-1/2 md:basis-1/3 lg:basis-1/3">
+                                    <div className="p-1">
+                                        <img src={image.src} alt={image.alt} className="aspect-square object-cover w-full h-full" />
+                                    </div>
+                                </CarouselItem>
+                            ))}
+                        </CarouselContent>
+                        <CarouselPrevious />
+                        <CarouselNext />
+                    </Carousel>
                 </div>
 
                 <div className="bg-[#191919] p-4 md:p-6 rounded-lg shadow-lg max-w-lg mx-auto text-white mt-6 md:mt-10 mx-4">

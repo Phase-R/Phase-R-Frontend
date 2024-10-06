@@ -6,6 +6,13 @@ import { Poppins } from "next/font/google";
 import { SlVolume2 } from "react-icons/sl";
 import Slider from '@/app/components/ui/slider';
 import FlipCard from "@/app/components/ui/flipcard";
+import {
+    Modal,
+    ModalBody,
+    ModalContent,
+    ModalFooter,
+    ModalTrigger,
+  } from "@/app/components/ui/animated-modal";
 
 // Import Poppins font
 const poppins = Poppins({
@@ -18,6 +25,60 @@ const desc_arr = ['"good review"', '"ok review"', '"bad review"'];
 const names = ["john jacob", "percy jackson", "thor ragnarok"];
 const quests = ["hi?", "hii??", "hiiii??"];
 
+//thought therapy component
+function TextEditorModal() {
+    const [text, setText] = useState(""); // State to hold the user input
+  
+    return (
+      <div className="py-40 flex items-center justify-center">
+        <Modal>
+          <ModalTrigger className="bg-black max-w-lg m-4 dark:bg-white dark:text-black text-white flex justify-center">
+              <Image
+                  src="/mental_health/combined_2.png"
+                  alt="combined_2"
+                  layout="responsive"
+                  height={1}
+                  width={1}
+                  className="object-cover opacity-70"
+              />
+              <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                  <h2 className={`${poppins.className} text-white sm:text-lg text-2xl md:text-4xl font-bold text-center`}>
+                      THOUGHT<br className="block" />
+                      THERAPY
+                  </h2>
+              </div>
+          </ModalTrigger>
+          <ModalBody>
+            <ModalContent>
+              <h4 className="text-lg md:text-2xl text-neutral-600 dark:text-neutral-100 font-bold text-center mb-4">
+                Your Thoughts
+              </h4>
+              <textarea
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                placeholder="Start typing your thoughts here..."
+                className="w-full h-64 md:h-96 p-4 rounded-lg border border-gray-300 dark:bg-neutral-800 dark:text-neutral-100 dark:border-neutral-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </ModalContent>
+            <ModalFooter className="gap-4">
+              <button
+                onClick={() => setText("")} // Clear the text when cancel is clicked
+                className="px-4 py-2 bg-gray-200 text-black dark:bg-black dark:text-white border border-gray-300 rounded-md text-sm"
+              >
+                Clear
+              </button>
+              <button
+                className="bg-black text-white dark:bg-white dark:text-black px-4 py-2 rounded-md text-sm"
+              >
+                Save
+              </button>
+            </ModalFooter>
+          </ModalBody>
+        </Modal>
+      </div>
+    );
+  }  
+
 export default function Page() {
     const [questions, setQuestions] = useState<string[]>([]);
 
@@ -29,7 +90,11 @@ export default function Page() {
 
     const playAudio = (audioRef: React.RefObject<HTMLAudioElement>) => {
         if (audioRef.current) {
-            audioRef.current.play();
+            if (audioRef.current.paused) {
+                audioRef.current.play();
+            } else {
+                audioRef.current.pause();
+            }
         }
     };
 
@@ -122,7 +187,7 @@ export default function Page() {
                             className="w-full h-auto"
                         />
                         <audio ref={leafAudioRef}>
-                            <source src='/mental_health/Fireplace_sounds.mp3' />
+                            <source src='/mental_health/GreenNoise.mp3' />
                         </audio>
                         <SlVolume2 className="sm:text-lg absolute inset-0 m-auto text-white md:text-3xl lg:text-4xl font-bold drop-shadow-lg" />
                     </div>
@@ -138,7 +203,7 @@ export default function Page() {
                             className="w-full h-auto"
                         />
                         <audio ref={beachAudioRef}>
-                            <source src='/mental_health/Fireplace_sounds.mp3' />
+                            <source src='/mental_health/Beach.mp3' />
                         </audio>
                         <SlVolume2 className="sm:text-lg absolute inset-0 m-auto text-white md:text-3xl lg:text-4xl font-bold drop-shadow-lg" />
                     </div>
@@ -151,7 +216,7 @@ export default function Page() {
                             className="w-full h-auto"
                         />
                         <audio ref={waterfallAudioRef}>
-                            <source src='/mental_health/Waterfall_sounds.mp3' />
+                            <source src='/mental_health/Waterfall.mp3' />
                         </audio>
                         <SlVolume2 className="sm:text-xl absolute inset-0 m-auto text-white md:text-3xl lg:text-4xl font-bold drop-shadow-lg" />
                     </div>
@@ -159,24 +224,7 @@ export default function Page() {
 
                 <FlipCard question={questions} />
 
-                <div className="flex justify-center mx-auto mt-24 lg:mt-96 mb-12">
-                    <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg bg-black">
-                        <Image
-                            src="/mental_health/combined_2.png"
-                            alt="combined_2"
-                            layout="responsive"
-                            height={1}
-                            width={1}
-                            className="object-cover opacity-70"
-                        />
-                        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                            <h2 className={`${poppins.className} text-white sm:text-lg text-2xl md:text-4xl font-bold text-center`}>
-                                THOUGHT<br className="block" />
-                                THERAPY
-                            </h2>
-                        </div>
-                    </div>
-                </div>
+                <TextEditorModal />
 
                 <div className="flex justify-evenly items-center max-w-lg mx-auto mt-24 space-x-2 md:space-x-4 lg:space-x-6 mb-24">
                     <div className="flex flex-col items-center">

@@ -4,6 +4,7 @@ import { useState } from "react";
 import customIcon from "../muscle-gain/icon/icon";
 import Button from "../components/button";
 import { Poppins } from "next/font/google";
+import Pyramid from "./Pyramid";
 const poppins = Poppins({ subsets: ['latin'], weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'] });
 
 interface ProteinSource {
@@ -131,6 +132,7 @@ const MuscleGainPage: React.FC<PageProps> = ({
                         <Button color={color} text="Customize Diet" />
                     </div>
                 </div>
+                <Pyramid size="h-64"/>
             </div>
         </div>
     );

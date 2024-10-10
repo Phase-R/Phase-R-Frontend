@@ -132,7 +132,9 @@ const MuscleGainPage: React.FC<PageProps> = ({
                         <Button color={color} text="Customize Diet" />
                     </div>
                 </div>
-                <Pyramid size="h-64"/>
+                <div className="pb-10 pt-10">
+                    <Pyramid size="h-64"/>
+                </div>
             </div>
         </div>
     );

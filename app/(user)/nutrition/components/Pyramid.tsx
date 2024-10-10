@@ -11,13 +11,12 @@ const Pyramid: React.FC<PyramidProps> = ({ size }) => {
       style={{ clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)", width: "350px", height: "300px" }}
     >
       {/* Fats */}
-      <div className="absolute top-0 w-full bg-yellow-400 text-white text-center flex items-center justify-center"
-      style={{height:"25%", backgroundColor:"yellow"}}>
+      <div className="absolute top-0 w-full h-20 bg-blue-700 text-white text-center flex items-center justify-center">
         Fats
       </div>
 
       {/* Proteins */}
-      <div className="absolute top-[25%] w-full bg-blue-500 text-white text-center flex items-center justify-center"
+      <div className="absolute top-[25%] w-full bg-red-600 text-white text-center flex items-center justify-center"
       style={{height:"25%"}}>
         Proteins
       </div>
@@ -29,7 +28,7 @@ const Pyramid: React.FC<PyramidProps> = ({ size }) => {
       </div>
 
       {/* Carbohydrates */}
-      <div className="absolute top-[75%] w-full bg-red-500 text-white text-center flex items-center justify-center"
+      <div className="absolute top-[75%] w-full bg-yellow-400 text-white text-center flex items-center justify-center"
       style={{height:"25%"}}>
         Carbohydrates
       </div>

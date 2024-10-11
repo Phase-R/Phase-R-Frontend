@@ -12,7 +12,7 @@ import {
     ModalContent,
     ModalFooter,
     ModalTrigger,
-  } from "@/app/components/ui/animated-modal";
+} from "@/app/components/ui/animated-modal";
 
 // Import Poppins font
 const poppins = Poppins({
@@ -23,61 +23,91 @@ const poppins = Poppins({
 const profile_pics = ["/mental_health/guy.png", "/mental_health/guy.png", "/mental_health/guy.png"];
 const desc_arr = ['"good review"', '"ok review"', '"bad review"'];
 const names = ["john jacob", "percy jackson", "thor ragnarok"];
-const quests = ["hi?", "hii??", "hiiii??"];
 
 //thought therapy component
 function TextEditorModal() {
     const [text, setText] = useState(""); // State to hold the user input
-  
+    const [isSubmitting, setIsSubmitting] = useState(false); // Loading state for submission
+
+    // Function to handle the form submission
+    const handleSubmit = async () => {
+        setIsSubmitting(true);
+
+        try {
+            console.log(text)
+            const response = await fetch('http://localhost:8080/post_thoughts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+                body: JSON.stringify({ thought: text }),
+            });
+
+            if (response.ok) {
+                console.log('Thought submitted successfully');
+                setText("");
+            } else {
+                console.error('Failed to submit thought');
+            }
+        } catch (error) {
+            console.error('Error submitting thought:', error);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     return (
-      <div className="py-40 flex items-center justify-center">
-        <Modal>
-          <ModalTrigger className="bg-black max-w-lg m-4 dark:bg-white dark:text-black text-white flex justify-center">
-              <Image
-                  src="/mental_health/combined_2.png"
-                  alt="combined_2"
-                  layout="responsive"
-                  height={1}
-                  width={1}
-                  className="object-cover opacity-70"
-              />
-              <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                  <h2 className={`${poppins.className} text-white sm:text-lg text-2xl md:text-4xl font-bold text-center`}>
-                      THOUGHT<br className="block" />
-                      THERAPY
-                  </h2>
-              </div>
-          </ModalTrigger>
-          <ModalBody>
-            <ModalContent>
-              <h4 className="text-lg md:text-2xl text-neutral-600 dark:text-neutral-100 font-bold text-center mb-4">
-                Your Thoughts
-              </h4>
-              <textarea
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-                placeholder="Start typing your thoughts here..."
-                className="w-full h-64 md:h-96 p-4 rounded-lg border border-gray-300 dark:bg-neutral-800 dark:text-neutral-100 dark:border-neutral-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </ModalContent>
-            <ModalFooter className="gap-4">
-              <button
-                onClick={() => setText("")} // Clear the text when cancel is clicked
-                className="px-4 py-2 bg-gray-200 text-black dark:bg-black dark:text-white border border-gray-300 rounded-md text-sm"
-              >
-                Clear
-              </button>
-              <button
-                className="bg-black text-white dark:bg-white dark:text-black px-4 py-2 rounded-md text-sm"
-              >
-                Save
-              </button>
-            </ModalFooter>
-          </ModalBody>
-        </Modal>
-      </div>
+        <div className="py-40 flex items-center justify-center">
+            <Modal>
+                <ModalTrigger className="bg-black max-w-lg m-4 dark:bg-white dark:text-black text-white flex justify-center">
+                    <Image
+                        src="/mental_health/combined_2.png"
+                        alt="combined_2"
+                        layout="responsive"
+                        height={1}
+                        width={1}
+                        className="object-cover opacity-70"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                        <h2 className={`${poppins.className} text-white sm:text-lg text-2xl md:text-4xl font-bold text-center`}>
+                            THOUGHT<br className="block" />
+                            THERAPY
+                        </h2>
+                    </div>
+                </ModalTrigger>
+                <ModalBody>
+                    <ModalContent>
+                        <h4 className="text-lg md:text-2xl text-neutral-600 dark:text-neutral-100 font-bold text-center mb-4">
+                            Your Thoughts
+                        </h4>
+                        <textarea
+                            value={text}
+                            onChange={(e) => setText(e.target.value)}
+                            placeholder="Start typing your thoughts here..."
+                            className="w-full h-64 md:h-96 p-4 rounded-lg border border-gray-300 dark:bg-neutral-800 dark:text-neutral-100 dark:border-neutral-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                    </ModalContent>
+                    <ModalFooter className="gap-4">
+                        <button
+                            onClick={() => setText("")} // Clear the text when cancel is clicked
+                            className="px-4 py-2 bg-gray-200 text-black dark:bg-black dark:text-white border border-gray-300 rounded-md text-sm"
+                        >
+                            Clear
+                        </button>
+                        <button
+                            onClick={handleSubmit} // Send the post request on save
+                            className="bg-black text-white dark:bg-white dark:text-black px-4 py-2 rounded-md text-sm"
+                            disabled={isSubmitting} // Disable button during submission
+                        >
+                            {isSubmitting ? 'Saving...' : 'Save'}
+                        </button>
+                    </ModalFooter>
+                </ModalBody>
+            </Modal>
+        </div>
     );
-  }  
+}
 
 export default function Page() {
     const [questions, setQuestions] = useState<string[]>([]);

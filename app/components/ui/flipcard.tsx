@@ -55,7 +55,7 @@ const FlipCard: React.FC<MCQProps> = ({ question }) => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ answers: selectedOptions }),
-				credentials: 'include'	
+                credentials: 'include'
             });
             if (response.ok) {
                 console.log('Answers submitted successfully');
@@ -65,28 +65,26 @@ const FlipCard: React.FC<MCQProps> = ({ question }) => {
         } catch (error) {
             console.error('Error submitting answers:', error);
         }
-    }; 
+    };
 
     return (
         <div className="flex justify-center items-center w-full h-full">
-            <div className="h-[500px] w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl bg-transparent cursor-pointer perspective">
+            <div className="h-[320px] md:h-[480px] lg:h-[635px] w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl bg-transparent cursor-pointer perspective">
                 <div className={`mt-24 backface-hidden relative preserve-3d w-full h-full duration-1000 ${flipped ? 'my-rotate-y-180' : ''}`}>
-                    <div className="absolute backface-hidden" onClick={handleFlip}>
-                        <div className="w-full h-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg bg-black">
-                            <Image
-                                src="/mental_health/combined_1.png"
-                                alt="combined_1"
-                                layout="responsive"
-                                height={500}
-                                width={500}
-                                className="object-cover opacity-70"
-                            />
-                            <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                                <h2 className={`${poppins.className} text-white sm:text-lg text-2xl md:text-4xl font-bold text-center`}>
-                                    WELL-BEING<br className="block" />
-                                    QUESTIONNAIRE
-                                </h2>
-                            </div>
+                    <div className="absolute backface-hidden w-full h-full" onClick={handleFlip}>
+                        <Image
+                            src="/mental_health/combined_1.png"
+                            alt="combined_1"
+                            layout="responsive"
+                            height={500}
+                            width={500}
+                            className="object-cover opacity-70"
+                        />
+                        <div className="absolute inset-0 flex items-center justify-center">
+                            <h2 className={`${poppins.className} text-white sm:text-lg text-2xl md:text-4xl font-bold text-center`}>
+                                WELL-BEING<br className="block" />
+                                QUESTIONNAIRE
+                            </h2>
                         </div>
                     </div>
                     <div className="absolute my-rotate-y-180 backface-hidden w-full h-full overflow-hidden">

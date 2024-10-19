@@ -46,7 +46,7 @@ function TextEditorModal() {
 
             if (response.ok) {
                 console.log('Thought submitted successfully');
-                setText("");
+                // setText("");
             } else {
                 console.error('Failed to submit thought');
             }

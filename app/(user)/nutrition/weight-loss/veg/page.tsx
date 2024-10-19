@@ -50,6 +50,9 @@ export default function muscleGain_Veg() {
             hero_img3="/nutrition_page/nuts_salad.png"
             diet_desc="A vegetarian diet can be a highly effective approach for weight loss when planned thoughtfully. Emphasizing a variety of vegetables, fruits, whole grains, legumes, nuts, and seeds forms the foundation of a nutritious plant-based eating plan. These foods are rich in fiber, vitamins, minerals, and antioxidants while often being lower in calories and saturated fats. Incorporating protein sources such as tofu,, lentils, and beans helps maintain muscle mass and promotes satiety. To optimize weight loss on a vegetarian diet, focus on portion control, minimize processed foods and added sugars, and consider incorporating regular exercise for overall health and sustainable weight management"
             sources_list={protein_sources}
+            color1=""
+            color2=""
+            color3=""
         />
     );
 }

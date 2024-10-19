@@ -50,6 +50,9 @@ export default function muscleGain_Veg() {
             hero_img3="/nutrition_page/muscle_gain_veg.svg"
             diet_desc="A vegetarian diet for muscle gain emphasizes plant-based proteins like tofu and lentils for essential amino acids. Incorporating whole grains, nuts, and healthy fats provides energy and supports muscle repair, making it vital to balance nutrient intake for effective muscle growth. Optimal Caloric Intake: Ensure you're consuming enough calories to support your workouts and muscle growth. Nutrient Timing: Pay attention to when you consume your nutrients. Eating protein-rich meals/snacks before and after workouts can enhance muscle recovery and growth."
             sources_list={protein_sources}
+            color1="[#000000]"
+            color2="[#468F2D]"
+            color3="[#000000]"
         />
     );
 }

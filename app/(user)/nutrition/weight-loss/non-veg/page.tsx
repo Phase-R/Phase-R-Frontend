@@ -50,6 +50,9 @@ export default function muscleGain_Veg() {
             hero_img3="/nutrition_page/nuts_salad.png"
             diet_desc="A non-vegetarian diet for weight loss can be effective when approached with balance and mindful choices. Lean sources of protein like poultry, fish, and eggs offer satiety while supporting muscle maintenance and repair. Incorporating these proteins alongside a variety of vegetables, whole grains, and healthy fats can create a balanced meal plan. However, it's crucial to moderate the intake of higher-calorie meats and processed meats, opting for lean cuts and healthier cooking methods like grilling, baking, or steaming. "
             sources_list={protein_sources}
+            color1=""
+            color2=""
+            color3=""
         />
     );
 }

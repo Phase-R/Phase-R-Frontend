@@ -11,7 +11,9 @@ export default function Pace() {
     return (
         <div>
             <PageHeader headerHeading="PACE BOWLING" headerDesc="Cricket is a very old game which requires the utmost of wits, tenacity and discipline combined with a high skill level either with the bat, ball or both" bgImage={"/sports_page/Pace_bowling.png"} headerColor="bg-orange-500" />
-            <VidComponent miniTitle="Fast Bowling Drills" pageTitle="" pageTitleColor="text-orange-500" pageDesc="" videos={paceBowlingVids} />
+            <div className="bg-gradient-to-b from-[#000000] via-[#28AABD] to-[#071c1f] min-h-screen py-10">
+                <VidComponent miniTitle="Fast Bowling Drills" pageTitle="" pageTitleColor="text-orange-500" pageDesc="" videos={paceBowlingVids} />
+            </div>
         </div>
     )
 }

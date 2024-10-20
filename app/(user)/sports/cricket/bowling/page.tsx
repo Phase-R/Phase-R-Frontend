@@ -9,18 +9,20 @@ export default function Bowling() {
         { title: "RELEASE POINT", desc: "which position and where to release the ballz", videoUrl: "https://www.youtube.com/embed/eWLVBP3VrO4?si=ImHHtesOQWzzIfye" },
     ]
 
-    return(
+    return (
         <div>
-            <PageHeader headerHeading="BOWLING" headerDesc="Cricket is a very old game which requires the utmost of wits, tenacity and discipline combined with a high skill level either with the bat, ball or both" bgImage={"/sports_page/bowling_page_bg.png"} headerColor="bg-orange-500" headerSubtextArray={["Spin", "Release", "Pace"]}  />
-            <VidComponent miniTitle="FUNDAMENTALS OF BOWLING" pageTitle="" pageTitleColor="text-orange-500" pageDesc="" videos={bowlingVids} />
+            <PageHeader headerHeading="BOWLING" headerDesc="Cricket is a very old game which requires the utmost of wits, tenacity and discipline combined with a high skill level either with the bat, ball or both" bgImage={"/sports_page/bowling_page_bg.png"} headerColor="bg-orange-500" headerSubtextArray={["Spin", "Release", "Pace"]} />
+            <div className="bg-gradient-to-b from-[#000000] via-[#28AABD] to-[#071c1f] min-h-screen py-10">
+                <VidComponent miniTitle="FUNDAMENTALS OF BOWLING" pageTitle="" pageTitleColor="text-orange-500" pageDesc="" videos={bowlingVids} />
 
-            <div className="text-white">
-                <h2 className="text-center text-lg md:text-xl lg:text-2xl font-bold">CHOOSE THE TYPE OF BOWLING</h2>
-                <div className="flex justify-center items-center            text-lg md:text-xl lg:text-2xl">
-                    <SubPageSection imageUrl="/sports_page/Pace_bowling.png" dispText="Pace Bowling" />
-                    <SubPageSection imageUrl="/sports_page/Spin_bowling.png" dispText="Spin Bowling" />
+                <div className="text-white">
+                    <h2 className="text-center text-lg md:text-xl lg:text-2xl font-bold">CHOOSE THE TYPE OF BOWLING</h2>
+                    <div className="flex justify-center items-center            text-lg md:text-xl lg:text-2xl">
+                        <SubPageSection imageUrl="/sports_page/Pace_bowling.png" dispText="Pace Bowling" />
+                        <SubPageSection imageUrl="/sports_page/Spin_bowling.png" dispText="Spin Bowling" />
+                    </div>
+                    <br />
                 </div>
-                <br />
             </div>
         </div>
     );

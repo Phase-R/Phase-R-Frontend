@@ -1,6 +1,7 @@
 import Sidebar from "./Sidebar";
 import { SparklesCore } from "../components/ui/sparkles";
 import { TypewriterEffectSmooth } from "../components/ui/typewriter-effect";
+import Link from 'next/link';
 
 export default function LandingPage() {
     const words = [
@@ -10,54 +11,93 @@ export default function LandingPage() {
     ]
 
     return (
-        <div className="bg-black">
-            <div className="h-[50vh] md:h-[75vh] lg:h-screen w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md">
-                <div className="w-full h-full relative">
-                    <SparklesCore
+        <div className="bg-black min-h-screen">
+            {/* Hero Section */}
+            <section className="h-screen w-full bg-black flex flex-col items-center justify-center overflow-hidden relative">
+                <SparklesCore
                     background="transparent"
                     minSize={0.4}
                     maxSize={1}
-                    particleDensity={500}
-                    className="w-full h-full"
+                    particleDensity={100}
+                    className="w-full h-full absolute"
                     particleColor="#FFFFFF"
-                    //   particleColor={sparkleColor}
-                    />
+                />
+                <div className="absolute inset-0 z-0 bg-black [mask-image:radial-gradient(circle,transparent_20%,black)]" />
+                <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold text-white z-10 mb-8">
+                    <TypewriterEffectSmooth words={words} />
+                </h1>
+                <p className="text-white text-xl md:text-2xl lg:text-3xl text-center max-w-3xl mx-auto z-10">
+                    UNLOCK YOUR BEST SELF WITH PHASE-R: IGNITE YOUR BODY, INSPIRE YOUR MIND.
+                </p>
+            </section>
 
-                    {/* Radial Gradient to prevent sharp edges */}
-                    <div className="absolute inset-0 z-0 w-full h-full bg-black [mask-image:radial-gradient(circle,transparent_1%,white)]">
-                    
+            {/* Features Section */}
+            <section className="py-20 px-4 md:px-8">
+                <div className="max-w-7xl mx-auto">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white text-center mb-12">Our Features</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {['Gym', 'Nutrition', 'Mental Health'].map((feature) => (
+                            <div key={feature} className="bg-gray-900 rounded-lg overflow-hidden shadow-lg group">
+                                <div className="overflow-hidden">
+                                    <img 
+                                        src={`landing_page/landing_${feature.toLowerCase().replace(' ', '_')}.png`} 
+                                        alt={`${feature} image`} 
+                                        className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+                                    />
+                                </div>
+                                <div className="p-6">
+                                    <h3 className="text-xl font-semibold text-white mb-2">{feature}</h3>
+                                    <p className="text-gray-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                </div>
+                            </div>
+                        ))}
                     </div>
-                    <h1 className="md:text-7xl text-3xl lg:text-9xl font-bold flex align-middle items-center justify-center text-white mt-[-30vh] md:mt-[-45vh] lg:mt-[-65vh] opacity-100 z-20">
-                        <TypewriterEffectSmooth words={words} />
-                    </h1>
                 </div>
-            </div>
-            <p className="text-center text-white font-bold m-6 md:m-10 lg:m-20 text-sm sm:text-md md:text-lg lg:text-xl xl:text-2xl">UNLOCK YOUR BEST SELF WITH PHASE-R: IGNITE YOUR BODY, INSPIRE YOUR MIND.</p>
-            <div className="grid grid-cols-3 grid-rows-1 gap-4 p-2 sm:p-4 lg:p-8 xl:p-16">
-                <img src="landing_page/landing_gym.png" alt="gym png" className="w-full h-auto" />
-                <img src="landing_page/landing_nutrition.png" alt="nutrition png" className="w-full h-auto" />
-                <img src="landing_page/landing_muay-thai.png" alt="muay thai png" className="w-full h-auto" />
-            </div>
-            <div className="grid grid-cols-3 grid-rows-2 gap-4 p-2 sm:p-4 lg:p-8 xl:p-16">
-                <img src="landing_page/landing_basketball.png" alt="basketball png" className="w-full h-auto" />
-                <img src="landing_page/landing_cricket.png" alt="cricket png" className="w-full h-auto" />
-                <img src="landing_page/landing_badminton.png" alt="badminton png" className="w-full h-auto" />
-                <img src="landing_page/landing_cardio.png" alt="cardio png" className="w-full h-auto" />
-                <img src="landing_page/landing_football.png" alt="football png" className="w-full h-auto" />
-                <img src="landing_page/landing_mental_health.png" alt="mental health png" className="w-full h-auto" />
-            </div>
-            <div className="w-full flex justify-center">
-                <button className="bg-white font-bold flex text-black text-center text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl rounded-xl p-4 ">DAILY GOALS <img src="landing_page/landing_goals_icon.png" className="w-6 md:w-6 lg:w-8 xl:w-10" /></button>
-            </div>
-            <br/ >
-            <p className="font-bold text-white mx-6 md:mx-10 lg:mx-20 text-left text-lg sm:text-xl md:text-3xl lg:text-5xl xl:text-6xl">
-            ELEVATE YOUR SPIRIT WITH PHASE-R: UNLEASH STRENGTH, EMBRACE CHANGE! 💪🚀 #PHASERevolution
-            </p>
-            <br />
-            <div className="w-full flex justify-center">
-                <button className="text-white bg-black font-bold text-md sm:text-lg md:text-xl lg:text-3xl xl:text-5xl border-white rounded-xl border-4 p-2 flex">SIGN ME UP</button>
-            </div>
-            <br />
+            </section>
+
+            {/* Activities Section */}
+            <section className="py-20 px-4 md:px-8">
+                <div className="max-w-7xl mx-auto">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white text-center mb-12">Activities</h2>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        {['Basketball', 'Cricket', 'Badminton', 'Cardio', 'Football', 'Muay Thai'].map((activity) => (
+                            <div key={activity} className="bg-black rounded-lg overflow-hidden shadow-lg group">
+                                <div className="overflow-hidden">
+                                    <img 
+                                        src={`landing_page/landing_${activity.toLowerCase().replace(' ', '_')}.png`} 
+                                        alt={`${activity} image`} 
+                                        className="w-full h-40 object-cover transition-transform duration-300 group-hover:scale-110"
+                                    />
+                                </div>
+                                <div className="p-4">
+                                    <h3 className="text-lg font-semibold text-white">{activity}</h3>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* CTA Section */}
+            <section className="py-20 px-4 md:px-8">
+                <div className="max-w-4xl mx-auto text-center">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8">
+                        ELEVATE YOUR SPIRIT WITH PHASE-R: UNLEASH STRENGTH, EMBRACE CHANGE! 💪🚀
+                    </h2>
+                    <p className="text-xl md:text-2xl text-gray-400 mb-12">
+                        #PHASERevolution
+                    </p>
+                    <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+                        <Link href="/signup" className="bg-white text-black font-bold text-lg md:text-xl px-8 py-3 rounded-full hover:bg-gray-200 transition duration-300">
+                            SIGN ME UP
+                        </Link>
+                        <Link href="/goals" className="bg-transparent text-white font-bold text-lg md:text-xl px-8 py-3 rounded-full border-2 border-white hover:bg-white hover:text-black transition duration-300 flex items-center">
+                            DAILY GOALS
+                            <img src="landing_page/landing_goals_icon.png" alt="Goals icon" className="w-6 ml-2" />
+                        </Link>
+                    </div>
+                </div>
+            </section>
         </div>
     )
 }

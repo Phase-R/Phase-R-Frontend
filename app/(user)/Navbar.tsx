@@ -1,5 +1,5 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuthStore } from '../store/store';
@@ -7,17 +7,22 @@ import { deleteCookie } from 'cookies-next';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
-
-    // Function to toggle the state
-    const handleClick = () => {
-        setIsOpen(!isOpen);
-    };
+    const [scrolled, setScrolled] = useState(false);
 
     const { push } = useRouter();
     const { setIsAuthenticated, getIsAuthenticated } = useAuthStore((state) => ({
         setIsAuthenticated: state.setIsAuthenticated,
         getIsAuthenticated: state.getIsAuthenticated,
     }));
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 20);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     const handleLogout = () => {
         deleteCookie('Auth');
@@ -34,125 +39,86 @@ export default function Navbar() {
     };
 
     return (
-        <header className="relative z-40 w-full h-16 bg-black-500 flex items-center justify-between px-4">
-            {/* Hamburger Button (visible on small screens) */}
-            <div className="block md:hidden">
-                <div className="relative">
-                    {/* Sidebar */}
-                    <nav
-                        className={`fixed top-0 left-0 h-full bg-gray-800 z-20 transition-all duration-1000 ${isOpen ? 'w-2/3 opacity-100' : 'w-0 opacity-0'
-                            }`}
-                    >
-                        {/* Conditionally render links only when the sidebar is open */}
-                        {isOpen && (
-                            <ul className="mt-24 ml-12 space-y-8 text-white text-lg">
-                                <li>
-                                    <Link href="/services" className="hover:underline">
-                                        Services
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="/about" className="hover:underline">
-                                        About us
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="/store" className="hover:underline">
-                                        Store
-                                    </Link>
-                                </li>
-                                {getIsAuthenticated() ? (
-                                    <li>
-                                        <Link href="/" onClick={handleLogout} className="hover:underline">
-                                            Logout
-                                        </Link>
-                                    </li>
-                                ) : (
-                                    <li>
-                                        <Link href="/login" onClick={handleLogin} className="hover:underline">
-                                            Login
-                                        </Link>
-                                    </li>
-                                )}
-                            </ul>
-                        )}
+        <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-black shadow-lg' : 'bg-transparent'}`}>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="flex justify-between items-center py-4 md:justify-start md:space-x-10">
+                    <div className="flex justify-start lg:w-0 lg:flex-1">
+                        <Link href="/" className="text-white font-bold text-xl">
+                            Phase-R
+                        </Link>
+                    </div>
+                    <div className="-mr-2 -my-2 md:hidden">
+                        <button
+                            type="button"
+                            className="bg-black rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                            onClick={() => setIsOpen(!isOpen)}
+                        >
+                            <span className="sr-only">Open menu</span>
+                            <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                    </div>
+                    <nav className="hidden md:flex space-x-10">
+                        <Link href="/services" className="text-base font-medium text-white hover:text-gray-300">
+                            Services
+                        </Link>
+                        <Link href="/about" className="text-base font-medium text-white hover:text-gray-300">
+                            About us
+                        </Link>
+                        <Link href="/store" className="text-base font-medium text-white hover:text-gray-300">
+                            Store
+                        </Link>
                     </nav>
-
-                    {/* Hamburger Button */}
-                    <div
-                        className="relative z-30 flex overflow-hidden items-center justify-center rounded-full w-[50px] h-[50px] transform transition-all hover:bg-gray-300 hover:bg-opacity-20 duration-200 shadow-md cursor-pointer"
-                        onClick={handleClick}
-                    >
-                        <div className="flex flex-col justify-between w-[20px] h-[20px] transform transition-all duration-300 origin-center overflow-hidden">
-                            <div
-                                className={`bg-white h-[2px] w-7 transform transition-all duration-300 origin-left ${isOpen ? 'translate-x-10 opacity-0' : 'opacity-100'
-                                    }`}
-                            ></div>
-                            <div
-                                className={`bg-white h-[2px] w-7 rounded transform transition-all duration-300 ${isOpen ? 'translate-x-10 opacity-0 delay-75' : 'opacity-100'
-                                    }`}
-                            ></div>
-                            <div
-                                className={`bg-white h-[2px] w-7 transform transition-all duration-300 origin-left ${isOpen ? 'translate-x-10 opacity-0 delay-150' : 'opacity-100'
-                                    }`}
-                            ></div>
-                            <div
-                                className={`absolute items-center justify-between transform transition-all duration-500 top-2.5 flex ${isOpen ? 'translate-x-0 opacity-100 w-7' : '-translate-x-10 opacity-0 w-0'
-                                    }`}
+                    <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+                        {getIsAuthenticated() ? (
+                            <button
+                                onClick={handleLogout}
+                                className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-orange-600 hover:bg-orange-700"
                             >
-                                <div
-                                    className={`absolute bg-white h-[2px] w-5 transform transition-all duration-500 ${isOpen ? 'rotate-45 delay-300' : 'rotate-0'
-                                        }`}
-                                ></div>
-                                <div
-                                    className={`absolute bg-white h-[2px] w-5 transform transition-all duration-500 ${isOpen ? '-rotate-45 delay-300' : 'rotate-0'
-                                        }`}
-                                ></div>
-                            </div>
-                        </div>
+                                Logout
+                            </button>
+                        ) : (
+                            <button
+                                onClick={handleLogin}
+                                className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-orange-600 hover:bg-orange-700"
+                            >
+                                Login
+                            </button>
+                        )}
                     </div>
                 </div>
             </div>
 
-            {/* Regular Navbar (visible on medium and large screens) */}
-            <nav className="hidden md:flex xl:justify-end p-4 sm:justify-center w-full">
-                <Link
-                    href="/services"
-                    className="xl:h-15 text-sm xl:text-xl sm:text-lg sm:w-1/7 lg:h-10 lg:rounded-md xs:text-blue-600 sm:my-2 sm:mx-8 px-4 py-2 text-white font-bold cursor-pointer"
-                >
-                    Services
-                </Link>
-                <Link
-                    href="/about"
-                    className="xl:h-15 text-sm xl:text-xl sm:text-lg sm:w-1/7 sm:h-10 sm:rounded-md sm:my-2 sm:mx-8 px-4 py-2 text-white font-bold cursor-pointer"
-                >
-                    About us
-                </Link>
-                <Link
-                    href="/store"
-                    className="xl:h-15 text-sm xl:text-xl sm:text-lg sm:w-1/7 sm:h-10 sm:rounded-md sm:my-2 sm:mx-8 px-4 py-2 text-white font-bold cursor-pointer"
-                >
-                    Store
-                </Link>
-                {getIsAuthenticated() ? (
-                    <Link
-                        href="/"
-                        onClick={handleLogout}
-                        className="xl:h-15 text-sm xl:text-xl sm:text-lg sm:w-1/7 lg:h-10 lg:rounded-md xs:text-blue-600 sm:my-2 sm:mx-8 px-4 py-2 text-white font-bold cursor-pointer"
-                    >
-                        Logout
+            {/* Mobile menu, show/hide based on mobile menu state */}
+            <div className={`${isOpen ? 'block' : 'hidden'} md:hidden`}>
+                <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                    <Link href="/services" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+                        Services
                     </Link>
-                ) : (
-                    <Link
-                        href="/login"
-                        onClick={handleLogin}
-                        className="xl:h-15 text-sm xl:text-xl sm:text-lg sm:w-1/7 sm:h-10 sm:rounded-md sm:my-2 sm:mx-8 px-4 py-2 text-white font-bold cursor-pointer"
-                    >
-                        Login
+                    <Link href="/about" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+                        About us
                     </Link>
-                )}
-            </nav>
+                    <Link href="/store" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+                        Store
+                    </Link>
+                    {getIsAuthenticated() ? (
+                        <button
+                            onClick={handleLogout}
+                            className="w-full text-left text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                        >
+                            Logout
+                        </button>
+                    ) : (
+                        <button
+                            onClick={handleLogin}
+                            className="w-full text-left text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                        >
+                            Login
+                        </button>
+                    )}
+                </div>
+            </div>
         </header>
     );
-
 }

@@ -44,7 +44,10 @@ export default function Navbar() {
                 <div className="flex justify-between items-center py-4 md:justify-start md:space-x-10">
                     <div className="flex justify-start lg:w-0 lg:flex-1">
                         <Link href="/" className="text-white font-bold text-xl">
+                        <div className='flex'>
+                            <img src="/landing_page/Logo.svg" alt="Phase-R" className="w-10 h-10 mr-2" />
                             Phase-R
+                        </div>
                         </Link>
                     </div>
                     <div className="-mr-2 -my-2 md:hidden">
@@ -74,14 +77,14 @@ export default function Navbar() {
                         {getIsAuthenticated() ? (
                             <button
                                 onClick={handleLogout}
-                                className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-orange-600 hover:bg-orange-700"
+                                className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border rounded-md shadow-sm text-base font-medium text-white bg-black"
                             >
                                 Logout
                             </button>
                         ) : (
                             <button
                                 onClick={handleLogin}
-                                className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-orange-600 hover:bg-orange-700"
+                                className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border rounded-md shadow-sm text-base font-medium text-white bg-black"
                             >
                                 Login
                             </button>

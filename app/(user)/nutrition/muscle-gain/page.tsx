@@ -21,7 +21,7 @@ const Calculator = () => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        const dietPage = Diet === 'Veg' ? 'veg' : 'non-veg';
+        const dietPage = Diet === 'Non Veg' ? 'non-veg' : 'veg';
         router.push(`/nutrition/muscle-gain/${dietPage}`); // Correct navigation usage
     };
 

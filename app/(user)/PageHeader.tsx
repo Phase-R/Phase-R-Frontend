@@ -23,7 +23,7 @@ const PageHeader = (props: PropTypes) => {
                     <h1 className={`text-3xl xl:text-7xl lg:text-5xl font-bold ${poppins.className}`}>{props.headerHeading.toUpperCase()}</h1>
                     <p className="my-5 text-lg md:text-xl lg:text-2xl w-full">{props.headerDesc}</p>
                     <div className="sm:my-[10%] my-[20%] text-center mx-auto">
-                        <Link href="/" className={`${props.headerColor} bg-green-700 hover:bg-green-800 w-[300px] rounded-full px-10 py-5`}>
+                        <Link href="/" className={`${props.headerColor} w-[300px] rounded-full px-10 py-5`}>
                             <span className={`${poppins.className}`}>Learn More &gt;&gt;</span>
                         </Link>
                     </div>
@@ -32,15 +32,15 @@ const PageHeader = (props: PropTypes) => {
 
             {(props.headerSubtextArray && props.headerSubtextArray.length > 0) && (
                 <div className={`text-white ${poppins.className} text-sm md:text-xl lg:text-2xl z-30 absolute left-0 right-0 bottom-0 transform translate-y-1/2 grid grid-cols-3 mx-auto text-center w-[90%] md:w-[75%] lg:w-[75%] xl:w-[75%] shadow-xl`}>
-                    <h1 className={`bg-black py-10 rounded-l-xl`}>
+                    <h1 className={`bg-[#191919] py-10 rounded-l-xl`}>
                         <span className="drop-shadow">{props.headerSubtextArray[0]?.toUpperCase()}</span><br />
                         {props.headerDesctextArray?.[0]}
                     </h1>
-                    <h1 className="py-10" style={{ backgroundColor: props.headerColor }}>
+                    <h1 className={`${props.headerColor} py-10`}>
                         <span className="drop-shadow">{props.headerSubtextArray[1]?.toUpperCase()}</span><br />
                         {props.headerDesctextArray?.[1]}
                     </h1>
-                    <h1 className={`bg-black py-10 rounded-r-xl`}>
+                    <h1 className={`bg-[#191919] py-10 rounded-r-xl`}>
                         <span className="drop-shadow">{props.headerSubtextArray[2]?.toUpperCase()}</span><br />
                         {props.headerDesctextArray?.[2]}
                     </h1>

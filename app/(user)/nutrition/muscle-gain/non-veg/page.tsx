@@ -48,12 +48,15 @@ export default function muscleGain_NonVeg() {
         hero_desc2: "Muscle gain, also known as muscle hypertrophy, refers to the process of increasing muscle size, strength, and overall mass through targeted exercise and proper nutrition",
         hero_desc3: "Achieving muscle gain requires a combination of resistance training and a well-rounded diet that emphasizes protein, carbohydrates, healthy fats, and essential micronutrients. By fueling your body with the right nutrients and engaging in appropriate exercise, you can support muscle growth, strength, and overall physical performance.",
         hero_img1: "/nutrition_page/muscle_gain_hero.png",
-        hero_img2: "/nutrition_page/greekgod.png",
-        hero_img3: "/nutrition_page/musclegain_veg_hero.png",
+        hero_img2: "/nutrition_page/greek_god.svg",
+        hero_img3: "/nutrition_page/muscle_gain_veg.svg",
         diet_desc: "A non-vegetarian diet for weight loss can be effective when approached with balance and mindful choices. Lean sources of protein like poultry, fish, and eggs offer satiety while supporting muscle maintenance and repair. Incorporating these proteins alongside a variety of vegetables, whole grains, and healthy fats can create a balanced meal plan. However, it's crucial to moderate the intake of higher-calorie meats and processed meats, opting for lean cuts and healthier cooking methods like grilling, baking, or steaming. ",
         sources_list: protein_sources,
         diet_img_1: "/path/to/non-vegetarian-image1.png",
-        diet_img_2: "/path/to/non-vegetarian-image2.png"
+        diet_img_2: "/path/to/non-vegetarian-image2.png",
+        color1: "[#000000]",
+        color2: "[#468F2D]",
+        color3: "[#000000]"
     };
 
     return <MuscleGainPage {...pageProps} />;

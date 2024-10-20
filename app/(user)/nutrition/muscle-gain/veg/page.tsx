@@ -46,10 +46,13 @@ export default function muscleGain_Veg() {
             hero_desc2="Muscle gain, also known as muscle hypertrophy, refers to the process of increasing muscle size, strength, and overall mass through targeted exercise and proper nutrition"
             hero_desc3="Achieving muscle gain requires a combination of resistance training and a well-rounded diet that emphasizes protein, carbohydrates, healthy fats, and essential micronutrients. By fueling your body with the right nutrients and engaging in appropriate exercise, you can support muscle growth, strength, and overall physical performance."
             hero_img1="/nutrition_page/muscle_gain_hero.png"
-            hero_img2="/nutrition_page/greekgod.png"
-            hero_img3="/nutrition_page/musclegain_veg_hero.png"
+            hero_img2="/nutrition_page/greek_god.svg"
+            hero_img3="/nutrition_page/muscle_gain_veg.svg"
             diet_desc="A vegetarian diet for muscle gain emphasizes plant-based proteins like tofu and lentils for essential amino acids. Incorporating whole grains, nuts, and healthy fats provides energy and supports muscle repair, making it vital to balance nutrient intake for effective muscle growth. Optimal Caloric Intake: Ensure you're consuming enough calories to support your workouts and muscle growth. Nutrient Timing: Pay attention to when you consume your nutrients. Eating protein-rich meals/snacks before and after workouts can enhance muscle recovery and growth."
             sources_list={protein_sources}
+            color1="[#000000]"
+            color2="[#468F2D]"
+            color3="[#000000]"
         />
     );
 }

@@ -20,9 +20,6 @@ const ForgotPasswordPage = () => {
         event.preventDefault();
         setDivState("loading");
 
-        const formData = new FormData(event.currentTarget);
-        const email = formData.get('email') as string;
-
         try {
             const response = await fetch('http://localhost:8080/user/forgot-password', {
                 method: 'POST',
@@ -31,18 +28,16 @@ const ForgotPasswordPage = () => {
                     'Content-Type': 'application/json'
                 }
             });
-            console.log(response)
+
             if (response.ok) {
                 setLoadingMessage('Reset Link Sent. Check Your Email.');
                 setDivState('active');
                 router.push(`/reset-password?email=${encodeURIComponent(email)}`);
-            }
-            if (response.status == 405) {
+            } else if (response.status === 405) {
                 setErrState('error');
                 setErrMsg('Invalid email or email not found');
                 setDivState('active');
-            }
-            else {
+            } else {
                 setErrState('error');
                 setErrMsg('Server error');
                 setDivState('active');
@@ -54,6 +49,7 @@ const ForgotPasswordPage = () => {
             setDivState('active');
         }
     };
+
 
     return (
         <>

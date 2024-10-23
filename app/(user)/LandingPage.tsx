@@ -8,14 +8,14 @@ export default function LandingPage() {
     const words = [
         {text: "Rework.", className: "text-white"},
         {text: "Rebuild.", className: "text-white"},
-        {text: "Revitalize.", className: "text-white"},
+        {text: "Recharge.", className: "text-white"},
     ]
 
     const features = [
-        {name: "Gym", route: "/gym"}, 
-        {name: "Nutrition", route: "/nutrition"}, 
-        {name: "Mental Health", route: "/mental-health"},
-        {name: "Sports", route: "/sports"}  // New feature added
+        {name: "Gym", route: "/gym", desc: "Get your body in shape in the gym."}, 
+        {name: "Nutrition", route: "/nutrition", desc: "Eat healthy with our nutrition plans."}, 
+        {name: "Mental Health", route: "/mental-health", desc: "Take care of your mind not just the body."},
+        {name: "Sports", route: "/sports", desc: "Have fun and stay active with sports."}
     ]
     const activities = [{name: "Basketball", route: "/", status: "locked"}, {name: "Cricket", route: "/sports/cricket", status: "unlocked"}, {name: "Badminton", route: "/sports/badminton", status: "unlocked"}, {name: "Cardio", route: "/physical-fitness/cardio", status: "unlocked"}, {name: "Football", route: "/sports/football", status: "unlocked"}, {name: "Martial Arts", route: "/", status: "locked"}]
 
@@ -57,7 +57,7 @@ export default function LandingPage() {
                                     </div>
                                     <div className="p-6">
                                         <h3 className="text-xl font-semibold text-white mb-2">{feature.name}</h3>
-                                        <p className="text-gray-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                        <p className="text-gray-400">{feature.desc}</p>
                                     </div>
                                 </div>
                             </Link>

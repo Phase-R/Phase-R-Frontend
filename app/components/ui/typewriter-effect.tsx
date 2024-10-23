@@ -151,15 +151,15 @@ export const TypewriterEffectSmooth = ({
         }}
         transition={{
           duration: 2,
-          repeat: Infinity,
+          repeat: 0,
           repeatDelay: 2,
-          repeatType: "reverse",
+          repeatType: undefined,
           ease: "linear",
           delay: 1,
         }}
       >
         <div
-          className="text-sm sm:text-lg md:text-3xl lg:text:5xl xl:text-7xl font-bold"
+          className="text-lg md:text-3xl lg:text:5xl xl:text-7xl font-bold"
           style={{
             whiteSpace: "nowrap",
           }}
@@ -177,8 +177,8 @@ export const TypewriterEffectSmooth = ({
         transition={{
           duration: 0.8,
 
-          repeat: Infinity,
-          repeatType: "reverse",
+          repeat: 0,
+          repeatType: "mirror",
         }}
         className={cn(
           "block rounded-sm w-[4px]  h-4 sm:h-8 xl:h-16 bg-blue-500",

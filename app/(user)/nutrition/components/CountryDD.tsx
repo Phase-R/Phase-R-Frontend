@@ -6,36 +6,35 @@ const CountryDropdown = () => {
     { value: "usa", label: "United States" },
     { value: "canada", label: "Canada" },
     { value: "uk", label: "United Kingdom" },
-    // Add more countries as needed
   ];
 
   const customStyles = {
     control: (provided: any) => ({
       ...provided,
-      backgroundColor: "transparent", // Transparent background
-      color: "#FFFFFF", // White text
-      borderColor: "#FFFFFF", // White border
-      borderRadius: "0.375rem", // Rounded border (6px, Tailwind default for 'rounded-md')
-      borderWidth: "2px", // Solid border
+      backgroundColor: "transparent",
+      color: "#FFFFFF",
+      borderColor: "#FFFFFF",
+      borderRadius: "0.375rem",
+      borderWidth: "2px",
     }),
     singleValue: (provided: any) => ({
       ...provided,
-      color: "#FFFFFF", // White text
+      color: "#FFFFFF",
     }),
     dropdownIndicator: (provided: any) => ({
       ...provided,
-      color: "#FFFFFF", // White dropdown indicator
+      color: "#FFFFFF",
     }),
     menu: (provided: any) => ({
       ...provided,
-      backgroundColor: "grey", // Transparent background for dropdown
+      backgroundColor: "grey",
     }),
     option: (provided: any, state: any) => ({
       ...provided,
-      backgroundColor: state.isSelected ? "#2D3748" : "transparent", // Darker shade when selected
-      color: "#FFFFFF", // White text
+      backgroundColor: state.isSelected ? "#2D3748" : "transparent",
+      color: "#FFFFFF",
       "&:hover": {
-        backgroundColor: "#2D3748", // Darker grey on hover
+        backgroundColor: "#2D3748",
       },
     }),
   };

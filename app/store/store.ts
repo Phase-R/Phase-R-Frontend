@@ -11,15 +11,15 @@ interface NutritionState {
   BMI: number | null;
   Goal_weight: string;
   Diet: string;
-  EstimatedTime: string;
-  Calories: string;
   ActivityLevel: string;
+  Cuisine: string; // New field for cuisine
+  MealChoice: string; // New field for meal choice
   setBMI: (bmi: number) => void;
   setGoalWeight: (goalWeight: string) => void;
   setDiet: (diet: string) => void;
-  setEstimatedTime: (time: string) => void;
-  setCalories: (calories: string) => void;
   setActivityLevel: (level: string) => void;
+  setCuisine: (cuisine: string) => void; // New action for setting cuisine
+  setMealChoice: (mealChoice: string) => void; // New action for setting meal choice
 }
 
 
@@ -43,19 +43,19 @@ const useNutritionStore = create<NutritionState>()(
       BMI: null,
       Goal_weight: '',
       Diet: '',
-      EstimatedTime: '',  // Initial state
-      Calories: '',       // Initial state
-      ActivityLevel: '',  // Initial state
+      ActivityLevel: '',
+      Cuisine: '', // Initialize cuisine
+      MealChoice: '', // Initialize meal choice
 
       setBMI: (bmi) => set(() => ({ BMI: bmi })),
       setGoalWeight: (goalWeight) => set(() => ({ Goal_weight: goalWeight })),
       setDiet: (diet) => set(() => ({ Diet: diet })),
-      setEstimatedTime: (time) => set(() => ({ EstimatedTime: time })), // Action to update EstimatedTime
-      setCalories: (calories) => set(() => ({ Calories: calories })), // Action to update Calories
-      setActivityLevel: (level) => set(() => ({ ActivityLevel: level })), // Action to update ActivityLevel
+      setActivityLevel: (level) => set(() => ({ ActivityLevel: level })),
+      setCuisine: (cuisine) => set(() => ({ Cuisine: cuisine })), // Action to set cuisine
+      setMealChoice: (mealChoice) => set(() => ({ MealChoice: mealChoice })), // Action to set meal choice
     }),
     {
-      name: 'nutrition-storage', // Key for local storage
+      name: 'nutrition-storage',
       storage: createJSONStorage(() => localStorage),
     }
   )

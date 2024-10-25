@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import customIcon from "../muscle-gain/icon/icon";
 import { Poppins } from "next/font/google";
 import Pyramid from "./Pyramid";
@@ -53,6 +53,7 @@ const MuscleGainPage: React.FC<PageProps> = ({
     color3
 }) => {
     const [selected, setSelected] = useState<ProteinSource[]>([]);
+    const [dietHtml, setDietHtml] = useState<string>("");
 
     const handleCheckBoxInput = (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
         const isChecked = event.target.checked;
@@ -67,6 +68,56 @@ const MuscleGainPage: React.FC<PageProps> = ({
         }
 
         setSelected(updatedProteins);
+    };
+
+    const generateDiet = async () => {
+        const params = {
+            plan: "Muscle Gain",
+            activity: "Moderate",
+            cuisine: "Italian",
+            meal_choice: "Vegetarian"
+        };
+
+        try {
+            const response = await fetch("http://localhost:8000/generate_diet", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(params)
+            });
+
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+
+            const reader = response.body?.getReader();
+            const decoder = new TextDecoder();
+            let result = "";
+            if (!reader) return;
+
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
+
+                // Decode the chunk and split by lines
+                const chunk = decoder.decode(value, { stream: true });
+                const lines = chunk.split('\n');
+
+                // Process each line
+                for (const line of lines) {
+                    if (line.startsWith('data: ')) {
+                        const message = line.slice(6); // Remove 'data: ' prefix
+                        const parsedMessage = JSON.parse(message);
+                        result += parsedMessage.message; // Append the message content
+                        setDietHtml(prev => prev + parsedMessage.message);
+                    }
+                }
+            }
+
+        } catch (error) {
+            console.error("Error fetching diet data:", error);
+        }
     };
 
     return (
@@ -134,7 +185,7 @@ const MuscleGainPage: React.FC<PageProps> = ({
                             </div>
                         ))}
                         <div className="flex flex-col items-center mt-8 space-y-4">
-                            <button className="w-full py-3 text-white text-xl font-bold bg-[#4AC847] rounded-md">
+                            <button onClick={generateDiet} className="w-full py-3 text-white text-xl font-bold bg-[#4AC847] rounded-md">
                                 Generate Diet
                             </button>
                             <button className="w-full py-3 text-white text-xl font-bold bg-[#4AC847] rounded-md">
@@ -144,6 +195,11 @@ const MuscleGainPage: React.FC<PageProps> = ({
                     </div>
                     <div className="mt-16">
                         <Pyramid size="h-64" />
+                    </div>
+                    <div className="mt-4">
+                    {dietHtml && (
+                        <div dangerouslySetInnerHTML={{ __html: dietHtml }} /> // Render the HTML table
+                    )}
                     </div>
                 </section>
             </div>

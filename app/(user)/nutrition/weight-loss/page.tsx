@@ -2,13 +2,13 @@
 
 import { Poppins } from "next/font/google";
 import { useState } from "react";
-import { useRouter } from 'next/navigation'; // Updated to use the correct router import
+import { useRouter } from 'next/navigation';
 import { useNutritionStore } from "@/app/store/store";
 
 const poppins = Poppins({ subsets: ['latin'], weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'] });
 
 const Calculator = () => {
-    const { BMI, setBMI, Goal_weight, setGoalWeight, Diet, setDiet, EstimatedTime, setEstimatedTime, Calories, setCalories, ActivityLevel, setActivityLevel } = useNutritionStore();
+    const { BMI, setBMI, Goal_weight, setGoalWeight, Diet, setDiet, ActivityLevel, setActivityLevel } = useNutritionStore();
 
     const [targetweight, setTargetWeight] = useState('');
     const [submitted, setSubmitted] = useState(false);
@@ -115,6 +115,7 @@ const Calculator = () => {
                                 )}
 
                                 {/* Estimated Time Input */}
+                                {/* 
                                 <div className="space-y-2 w-3/4 md:w-full mx-auto">
                                     <label htmlFor="estimated-time" className="block text-sm font-medium">
                                         Estimated time to reach target weight (in weeks)
@@ -126,8 +127,10 @@ const Calculator = () => {
                                         className="w-full p-2 border border-gray-300 rounded-md bg-black text-white"
                                     />
                                 </div>
+                                */}
 
                                 {/* Calories Input */}
+                                {/* 
                                 <div className="space-y-2 w-3/4 md:w-full mx-auto">
                                     <label htmlFor="calories" className="block text-sm font-medium">
                                         Calories to be consumed to reach target weight
@@ -140,6 +143,7 @@ const Calculator = () => {
                                         className="w-full p-2 border border-gray-300 rounded-md bg-black text-white"
                                     />
                                 </div>
+                                */}
 
                                 {/* Activity Level Dropdown */}
                                 <div className="space-y-2 w-3/4 md:w-full mx-auto">

@@ -6,6 +6,8 @@ const CountryDropdown = () => {
     { value: "usa", label: "United States" },
     { value: "canada", label: "Canada" },
     { value: "uk", label: "United Kingdom" },
+    { value: "india", label: "India" },
+    { value: "australia", label: "Australia" },
   ];
 
   const customStyles = {
@@ -37,6 +39,14 @@ const CountryDropdown = () => {
         backgroundColor: "#2D3748",
       },
     }),
+    input: (provided: any) => ({
+      ...provided,
+      color: "#FFFFFF",
+    }),
+    placeholder: (provided: any) => ({
+      ...provided,
+      color: "#FFFFFF",
+    }),
   };
 
   return (
@@ -45,7 +55,7 @@ const CountryDropdown = () => {
         options={countryOptions}
         styles={customStyles}
         placeholder="Select a country"
-        className="text-white"
+        className="text-white-900"
       />
     </div>
   );

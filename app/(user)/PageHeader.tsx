@@ -32,7 +32,7 @@ const PageHeader = (props: PropTypes) => {
 
             {(props.headerSubtextArray && props.headerSubtextArray.length > 0) && (
                 <div className={`text-white ${poppins.className} text-sm md:text-xl lg:text-2xl z-30 absolute left-0 right-0 bottom-0 transform translate-y-1/2 grid grid-cols-3 mx-auto text-center w-[90%] md:w-[75%] lg:w-[75%] xl:w-[75%] shadow-xl`}>
-                    <h1 className={`bg-[#191919] py-10 rounded-l-xl`}>
+                    <h1 className={`bg-[#191919] py-10 rounded-l-xl opacity-70`}>
                         <span className="drop-shadow">{props.headerSubtextArray[0]?.toUpperCase()}</span><br />
                         {props.headerDesctextArray?.[0]}
                     </h1>
@@ -40,7 +40,7 @@ const PageHeader = (props: PropTypes) => {
                         <span className="drop-shadow">{props.headerSubtextArray[1]?.toUpperCase()}</span><br />
                         {props.headerDesctextArray?.[1]}
                     </h1>
-                    <h1 className={`bg-[#191919] py-10 rounded-r-xl`}>
+                    <h1 className={`bg-[#191919] py-10 rounded-r-xl opacity-70`}>
                         <span className="drop-shadow">{props.headerSubtextArray[2]?.toUpperCase()}</span><br />
                         {props.headerDesctextArray?.[2]}
                     </h1>

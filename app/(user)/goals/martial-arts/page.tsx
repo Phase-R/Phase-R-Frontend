@@ -7,7 +7,7 @@ import {
     CarouselItem,
     CarouselPrevious,
     CarouselNext,
-} from "@/app/components/ui/carousel"
+} from "@/components/ui/carousel"
 import hiit from "../../physical-fitness/cardio/hiit/page";
 const poppins = Poppins({ subsets: ['latin'], weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'] });
 

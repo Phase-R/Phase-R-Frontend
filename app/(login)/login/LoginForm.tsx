@@ -10,7 +10,7 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import Link from "next/link";
 import { useAuthStore } from "@/app/store/store";
 import { useRouter } from "next/navigation";
-import FlipCard from "@/app/components/ui/flipcard";
+import FlipCard from "@/components/ui/flipcard";
 import { FaKaaba } from "react-icons/fa";
 const poppins = Poppins({ subsets: ["latin"], weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"] });
 const montserrat = Montserrat({ subsets: ["latin"], weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"] });

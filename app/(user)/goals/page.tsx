@@ -105,7 +105,7 @@ export default function Fitness() {
                 </div>
 
                 <p className="relative z-10 text-white text-bold text-center p-4 md:p-8 text-lg md:text-xl lg:text-2xl">
-                    Embark on a transformative health journey with our Track Your Diet feature. Empower yourself with real-time insights into your nutrition, enabling you to make informed choices and achieve your wellness goals. Our user-friendly interface makes tracking a breeze, ensuring you stay committed to a healthier lifestyle. Whether you're aiming for weight management, fitness milestones, or simply better nutrition, our platform equips you with the tools to succeed. Take control of your well-being – Track Your Diet, and watch as positive changes unfold on your path to a healthier, happier you.
+                    Embark on a transformative health journey with our Track Your Diet feature. Empower yourself with real-time insights into your nutrition, enabling you to make informed choices and achieve your wellness goals. Our user-friendly interface makes tracking a breeze, ensuring you stay committed to a healthier lifestyle. Whether you&apos;re aiming for weight management, fitness milestones, or simply better nutrition, our platform equips you with the tools to succeed. Take control of your well-being – Track Your Diet, and watch as positive changes unfold on your path to a healthier, happier you.
                 </p>
 
                 <div className="relative z-10 mt-12 md:mt-18 lg:mt-24">

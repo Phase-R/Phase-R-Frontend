@@ -183,7 +183,7 @@ export default function Fitness() {
 
                 <div className="bg-[#191919] p-4 md:p-6 rounded-lg shadow-lg max-w-lg mx-auto text-white mt-6 md:mt-10 mx-4">
                     <p className="text-sm md:text-base leading-relaxed">
-                        Swimming has a rich history, with the breaststroke dating back over 7,000 years and being the oldest known swimming stroke. In 1828, the first indoor swimming pool, the St. George's Baths, was constructed in Liverpool, England, equipped with a pioneering heating system.
+                        Swimming has a rich history, with the breaststroke dating back over 7,000 years and being the oldest known swimming stroke. In 1828, the first indoor swimming pool, the St. George&apos;s Baths, was constructed in Liverpool, England, equipped with a pioneering heating system.
                     </p>
                 </div>
 
@@ -209,7 +209,7 @@ export default function Fitness() {
 
                 <div className="bg-[#191919] p-4 md:p-6 rounded-lg shadow-lg max-w-lg mx-auto text-white mt-6 md:mt-10 mx-4">
                     <p className="text-sm md:text-base leading-relaxed">
-                        Cycling, like swimming, has a fascinating history, and one of the most iconic events is the creation of the first practical bicycle, known as the 'boneshaker,' in the 1860s. The evolution of cycling facilities has been remarkable, with the Netherlands boasting the world's first dedicated cycle path in 1885.
+                        Cycling, like swimming, has a fascinating history, and one of the most iconic events is the creation of the first practical bicycle, known as the &apos;boneshaker,&apos; in the 1860s. The evolution of cycling facilities has been remarkable, with the Netherlands boasting the world&apos;s first dedicated cycle path in 1885.
                     </p>
                 </div>
             </div>

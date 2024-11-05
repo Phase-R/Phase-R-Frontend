@@ -19,8 +19,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <link rel="icon" href="/landing_page/Logo.svg" sizes="any" />
       <body className={`${dm.className}`}>
-          <Navbar />
+        <Navbar />
         <div className='hidden lg:block xl:block'>
           {/* <Sidebar /> */}
         </div>

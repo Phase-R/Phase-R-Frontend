@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import customIcon from "../muscle-gain/icon/icon";
+import customIcon from "../../../../components/ui/icon";
 import { Poppins } from "next/font/google";
 import Pyramid from "./Pyramid";
 import CountryDropdown from "./CountryDD";

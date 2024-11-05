@@ -5,17 +5,17 @@ import { Poppins } from "next/font/google"
 import { Url } from "next/dist/shared/lib/router/router"
 const poppins = Poppins({ subsets: ['latin'], weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'] })
 
-interface PropTypes {
-    direction: string,
-    imageUrl: string,
-    heading: string,
-    desc: string,
-    buttonImg: string,
-    buttonColor: string,
-    linkTo: Url,
-    borderColor: string,
-    highlightWord: string;
-}
+// interface PropTypes {
+//     direction: string,
+//     imageUrl: string,
+//     heading: string,
+//     desc: string,
+//     buttonImg: string,
+//     buttonColor: string,
+//     linkTo: Url,
+//     borderColor: string,
+//     highlightWord: string;
+// }
 
 interface PropTypes {
     direction: string;

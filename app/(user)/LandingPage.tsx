@@ -1,6 +1,6 @@
 import Sidebar from "./Sidebar";
-import { SparklesCore } from "../components/ui/sparkles";
-import { TypewriterEffectSmooth } from "../components/ui/typewriter-effect";
+import { SparklesCore } from "../../components/ui/sparkles";
+import { TypewriterEffectSmooth } from "../../components/ui/typewriter-effect";
 import Link from 'next/link';
 import Image from 'next/image';
 

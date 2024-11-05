@@ -4,15 +4,15 @@ import React, { useRef, useEffect, useState } from 'react';
 import Image from "next/image";
 import { Poppins } from "next/font/google";
 import { SlVolume2 } from "react-icons/sl";
-import Slider from '@/app/components/ui/slider';
-import FlipCard from "@/app/components/ui/flipcard";
+import Slider from '@/components/ui/slider';
+import FlipCard from "@/components/ui/flipcard";
 import {
     Modal,
     ModalBody,
     ModalContent,
     ModalFooter,
     ModalTrigger,
-} from "@/app/components/ui/animated-modal";
+} from "@/components/ui/animated-modal";
 
 // Import Poppins font
 const poppins = Poppins({

@@ -1,7 +1,7 @@
 'use client';
 import Link from "next/link";
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, Suspense } from 'react';
 import { Poppins, Montserrat } from "next/font/google";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { MdOutlinePassword } from "react-icons/md";
@@ -11,7 +11,16 @@ const poppins = Poppins({ subsets: ['latin'], weight: ["100", "200", "300", "400
 const montserrat = Montserrat({ subsets: ["latin"], weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"] });
 
 const ResetPasswordPage = () => {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <SearchParamsComponent />
+        </Suspense>
+    );
+};
+
+const SearchParamsComponent = () => {
     const router = useRouter();
+
     const searchParams = useSearchParams();
     const email = searchParams?.get('email') || '';
 
@@ -166,9 +175,6 @@ const ResetPasswordPage = () => {
             </div>
         </div>
     );
-
-
-
 };
 
 export default ResetPasswordPage;

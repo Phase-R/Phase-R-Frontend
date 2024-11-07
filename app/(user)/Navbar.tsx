@@ -67,7 +67,7 @@ export default function Navbar() {
                     <div className="flex justify-start lg:w-0 lg:flex-1">
                         <Link href="/" className="text-white font-bold text-xl">
                         <div className='flex'>
-                            <img src="/landing_page/Logo.jpg" alt="Phase-R" className="w-10 h-10 mr-2 rounded-full" />
+                            <img src="/landing_page/Logo.jpg" alt="Phase-R" className="w-12 h-12 md:w-16 md:h-16 mr-2 rounded-full" />
                             Phase-R
                         </div>
                         </Link>

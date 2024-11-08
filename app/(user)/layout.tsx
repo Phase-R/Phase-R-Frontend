@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <link rel="icon" href="/landing_page/Logo.svg" sizes="any" />
+      <link rel="icon" href="/landing_page/Logo.jpg" sizes="any" className='rounded-full' />
       <body className={`${dm.className}`}>
         <Navbar />
         <div className='hidden lg:block xl:block'>

@@ -3,21 +3,19 @@
 import { useState, FormEvent, useEffect } from "react";
 import Image from "next/image";
 import { Poppins, Montserrat } from "next/font/google";
-import GoogleIcon from '@mui/icons-material/Google';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import AppleIcon from '@mui/icons-material/Apple';
+import GoogleIcon from "@mui/icons-material/Google";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import AppleIcon from "@mui/icons-material/Apple";
 import { RiLockPasswordLine } from "react-icons/ri";
 import Link from "next/link";
 import { useAuthStore } from "@/app/store/store";
 import { useRouter } from "next/navigation";
-import FlipCard from "@/components/ui/flipcard";
-import { FaKaaba } from "react-icons/fa";
-const poppins = Poppins({ subsets: ["latin"], weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"] });
-const montserrat = Montserrat({ subsets: ["latin"], weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"] });
+import { increment } from "firebase/firestore";
+
+const poppins = Poppins({ subsets: ["latin"], weight: ["400", "700"] });
+const montserrat = Montserrat({ subsets: ["latin"], weight: ["400", "700"] });
 
 const LoginForm = () => {
-	const questions = ["where are u", "wyd"]
-
 	const { setIsAuthenticated, getIsAuthenticated } = useAuthStore((state) => ({
 		setIsAuthenticated: state.setIsAuthenticated,
 		getIsAuthenticated: state.getIsAuthenticated,
@@ -25,64 +23,66 @@ const LoginForm = () => {
 
 	const { push } = useRouter();
 
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
 
-	const [divState, setDivState] = useState('active');
-	const [errState, setErrState] = useState('error-free');
-	const [errMsg, setErrMsg] = useState('');
-	const [loadingMessage, setLoadingMessage] = useState('Logging In...');
+	const [divState, setDivState] = useState("active");
+	const [errState, setErrState] = useState("error-free");
+	const [errMsg, setErrMsg] = useState("");
+	const [loadingMessage, setLoadingMessage] = useState("Logging In...");
 
 	useEffect(() => {
+		// const checkAuthStatus = async () => {
+
+		// }
+
 		if (getIsAuthenticated()) {
-			push('/profile');
+			push("/profile");
 		}
 	}, [getIsAuthenticated, push]);
+
+	const handleGoogleSignIn = async () => {
+		window.location.href = "http://localhost:8080/user/google/signin";
+	};
 
 	const onHandleSubmit = async (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		setDivState("loading");
 
 		if (email.length === 0 || password.length === 0) {
-			setErrState('error');
-			setErrMsg('Please Fill The Required Fields');
-			setDivState('active');
+			setErrState("error");
+			setErrMsg("Please Fill The Required Fields");
+			setDivState("active");
 		} else {
 			try {
-				const response = await fetch('http://localhost:8080/user/login', {
-					method: 'POST',
-					body: JSON.stringify({
-						email: email,
-						password: password
-					}),
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					credentials: 'include'
+				const response = await fetch("http://localhost:8080/user/login", {
+					method: "POST",
+					body: JSON.stringify({ email, password }),
+					headers: { "Content-Type": "application/json" },
+					credentials: "include",
 				});
 
 				const data = await response.json();
 
 				if (response.ok) {
-					setLoadingMessage('Log In Successful. Redirecting...');
+					setLoadingMessage("Log In Successful. Redirecting...");
 					setIsAuthenticated(true);
-					push('/profile');
-				  } else if (response.status === 405) {
-					// Handle specific error for email not verified
-					setErrState('error');
-					setErrMsg(data.message || 'Email not verified. Please verify your email.');
-					setDivState('active');
-				  } else {
-					setErrState('error');
-					setErrMsg(data.message || 'An error occurred during login');
-					setDivState('active');
-				  }
-				} catch (error) {
-				  console.error('Login error:', error);
-				  setErrState('error');
-				  setErrMsg('An unexpected error occurred. Please try again.');
-				  setDivState('active');
+					push("/profile");
+				} else if (response.status === 405) {
+					setErrState("error");
+					setErrMsg(data.message || "Email not verified. Please verify your email.");
+					setDivState("active");
+				} else {
+					setErrState("error");
+					setErrMsg(data.message || "An error occurred during login");
+					setDivState("active");
 				}
+			} catch (error) {
+				console.error("Login error:", error);
+				setErrState("error");
+				setErrMsg("An unexpected error occurred. Please try again.");
+				setDivState("active");
+			}
 		}
 	};
 
@@ -148,7 +148,7 @@ const LoginForm = () => {
 
 							<div className="flex justify-center items-center gap-4 sm:gap-5 md:gap-6 my-8">
 								<div className="border-2 border-white rounded-full p-3 sm:p-4 md:p-5 group transition-all ease-in-out hover:bg-white text-white hover:text-black">
-									<GoogleIcon className="group-hover:scale-110" />
+									<GoogleIcon className="group-hover:scale-110" onClick={handleGoogleSignIn} />
 								</div>
 								<div className="border-2 border-white rounded-full p-3 sm:p-4 md:p-5 group transition-all ease-in-out hover:bg-white text-white hover:text-black">
 									<FacebookIcon className="group-hover:scale-110" />

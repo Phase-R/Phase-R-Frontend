@@ -49,7 +49,7 @@ const LoginForm = () => {
 			setDivState('active');
 		} else {
 			try {
-				const response = await fetch('http://localhost:8080/user/login', {
+				const response = await fetch('https://api.phase-r.fit/user/login', {
 					method: 'POST',
 					body: JSON.stringify({
 						email: email,
@@ -89,7 +89,23 @@ const LoginForm = () => {
 	return (
 		<>
 			{/*adjust the container size for medium screens(i pad), adjust margin bottom and remove scrollbar for large screens*/}
-			<div className="relative min-h-screen bg-cover bg-center bg-fixed" style={{ backgroundImage: "url('/login_page/login-4.png')" }}>
+			<div className="relative min-h-screen bg-cover bg-center bg-fixed">
+				<video 
+                    src="/login_page/signup_page_bg_vid.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    style={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        zIndex: -1,
+                    }}>
+                </video>
 				<div className="absolute inset-0 bg-black opacity-50"></div>
 				{divState === "active" ? (
 					<div className="flex justify-center items-center w-full h-full">

@@ -21,7 +21,7 @@ const ForgotPasswordPage = () => {
         setDivState("loading");
 
         try {
-            const response = await fetch('http://localhost:8080/user/forgot-password', {
+            const response = await fetch('https://api.phase-r.fit/user/forgot-password', {
                 method: 'POST',
                 body: JSON.stringify({ email }),
                 headers: {
@@ -53,10 +53,23 @@ const ForgotPasswordPage = () => {
 
     return (
         <>
-            <div
-                className="relative min-h-screen bg-cover bg-center bg-fixed"
-                style={{ backgroundImage: "url('/login_page/login-4.png')" }}
-            >
+            <div className="relative min-h-screen bg-cover bg-center bg-fixed">
+                <video 
+                src="/login_page/signup_page_bg_vid.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    zIndex: -1,
+                }}>
+                </video>
                 <div className="absolute inset-0 bg-black opacity-50"></div>
                 <div className="flex justify-center items-center min-h-screen">
                     <div className="bg-[#00000099] backdrop-blur w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-md xl:max-w-lg px-4 sm:px-8 md:px-12 lg:px-16 py-6 sm:py-8 md:py-10 lg:py-12 rounded-lg mb-6 md:mb-8 lg:mb-10">

@@ -46,7 +46,7 @@ const SearchParamsComponent = () => {
         }
 
         try {
-            const response = await fetch('http://localhost:8080/user/reset-password', {
+            const response = await fetch('https://api.phase-r.fit/user/reset-password', {
                 method: 'POST',
                 body: JSON.stringify({ email, otp, newPassword }),
                 headers: {

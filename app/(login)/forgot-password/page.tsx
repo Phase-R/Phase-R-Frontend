@@ -21,7 +21,7 @@ const ForgotPasswordPage = () => {
         setDivState("loading");
 
         try {
-            const response = await fetch('http://localhost:8080/user/forgot-password', {
+            const response = await fetch('https://api.phase-r.fit/user/forgot-password', {
                 method: 'POST',
                 body: JSON.stringify({ email }),
                 headers: {

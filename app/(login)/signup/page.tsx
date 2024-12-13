@@ -41,7 +41,7 @@ const SignupPage = () => {
         }
 
         try {
-            const response = await fetch('http://localhost:8080/user/new', {
+            const response = await fetch('https://api.phase-r.fit/user/new', {
                 method: 'POST',
                 body: JSON.stringify(userData),
                 headers: {

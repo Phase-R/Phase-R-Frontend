@@ -49,7 +49,7 @@ const LoginForm = () => {
 			setDivState('active');
 		} else {
 			try {
-				const response = await fetch('http://localhost:8080/user/login', {
+				const response = await fetch('https://api.phase-r.fit/user/login', {
 					method: 'POST',
 					body: JSON.stringify({
 						email: email,

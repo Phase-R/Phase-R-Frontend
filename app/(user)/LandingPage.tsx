@@ -3,21 +3,22 @@ import { SparklesCore } from "../../components/ui/sparkles";
 import { TypewriterEffectSmooth } from "../../components/ui/typewriter-effect";
 import Link from 'next/link';
 import Image from 'next/image';
+import { FaLock } from "react-icons/fa";
 
 export default function LandingPage() {
     const words = [
-        {text: "Rework.", className: "text-white"},
-        {text: "Rebuild.", className: "text-white"},
-        {text: "Recharge.", className: "text-white"},
+        { text: "Rework.", className: "text-white" },
+        { text: "Rebuild.", className: "text-white" },
+        { text: "Recharge.", className: "text-white" },
     ]
 
     const features = [
-        {name: "Gym", route: "/gym", desc: "Get your body in shape in the gym."}, 
-        {name: "Nutrition", route: "/nutrition", desc: "Eat healthy with our nutrition plans."}, 
-        {name: "Mental Health", route: "/mental-health", desc: "Take care of your mind not just the body."},
-        {name: "Sports", route: "/sports", desc: "Have fun and stay active with sports."}
+        { name: "Gym", route: "/gym", desc: "Get your body in shape in the gym." },
+        { name: "Nutrition", route: "/nutrition", desc: "Eat healthy with our nutrition plans." },
+        { name: "Mental Health", route: "/mental-health", desc: "Take care of your mind not just the body." },
+        { name: "Sports", route: "/sports", desc: "Have fun and stay active with sports." }
     ]
-    const activities = [{name: "Basketball", route: "/", status: "locked"}, {name: "Cricket", route: "/sports/cricket", status: "unlocked"}, {name: "Badminton", route: "/sports/badminton", status: "unlocked"}, {name: "Cardio", route: "/physical-fitness/cardio", status: "unlocked"}, {name: "Football", route: "/sports/football", status: "unlocked"}, {name: "Martial Arts", route: "/", status: "locked"}]
+    const activities = [{ name: "Basketball", route: "/", status: "locked" }, { name: "Cricket", route: "/sports/cricket", status: "unlocked" }, { name: "Badminton", route: "/sports/badminton", status: "unlocked" }, { name: "Cardio", route: "/physical-fitness/cardio", status: "unlocked" }, { name: "Football", route: "/sports/football", status: "unlocked" }, { name: "Martial Arts", route: "/", status: "locked" }]
 
     return (
         <div className="bg-black min-h-screen">
@@ -49,9 +50,9 @@ export default function LandingPage() {
                             <Link href={feature.route} key={feature.name}>
                                 <div className="bg-black border rounded-lg overflow-hidden shadow-lg group cursor-pointer">
                                     <div className="overflow-hidden">
-                                        <img 
-                                            src={`landing_page/landing_${feature.name.toLowerCase().replace(' ', '_')}.png`} 
-                                            alt={`${feature.name} image`} 
+                                        <img
+                                            src={`landing_page/landing_${feature.name.toLowerCase().replace(' ', '_')}.png`}
+                                            alt={`${feature.name} image`}
                                             className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
                                         />
                                     </div>
@@ -75,15 +76,16 @@ export default function LandingPage() {
                             <Link href={activity.route} key={activity.name}>
                                 <div className="bg-black border rounded-lg overflow-hidden shadow-lg group cursor-pointer relative">
                                     <div className="overflow-hidden">
-                                        <img 
-                                            src={`landing_page/landing_${activity.name.toLowerCase().replace(' ', '_')}.png`} 
-                                            alt={`${activity.name} image`} 
+                                        <img
+                                            src={`landing_page/landing_${activity.name.toLowerCase().replace(' ', '_')}.png`}
+                                            alt={`${activity.name} image`}
                                             className="w-full h-40 object-cover transition-transform duration-300 group-hover:scale-110"
                                         />
                                         {activity.status === "locked" && (
                                             <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                                                <Image src="/landing_page/lock-icon.jpg" alt="Locked" width={40} height={40} />
+                                                <FaLock className="text-[#d1d1d1] text-4xl" />
                                             </div>
+
                                         )}
                                     </div>
                                     <div className="p-4">

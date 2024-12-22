@@ -1,7 +1,8 @@
+'use state'
 import React from "react"
 import PageSection from "../PageSection"
 import PageHeader from "../PageHeader"
-
+import WaterTracker from "./components/WaterTrack"
 export default function Sports() {
     return (
         <div>
@@ -38,6 +39,7 @@ export default function Sports() {
                     highlightWord="gain"
                     highlightColor="#4AC847"
                 />
+                <WaterTracker initialIntake={100} dailyGoal={1000} />
             </div>
 
         </div>

@@ -1,5 +1,5 @@
 import PageHeader from "@/app/(user)/PageHeader";
-import VidComponent from "../../VidsComponent";
+import VidComponent from "../../../VidsComponent";
 
 export default function kickboxing() {
     const kickBoxingVids = [

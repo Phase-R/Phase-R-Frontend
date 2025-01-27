@@ -1,5 +1,5 @@
 import PageHeader from "@/app/(user)/PageHeader";
-import VidComponent from "@/app/(user)/physical-fitness/VidsComponent";
+import VidComponent from "@/app/(user)/VidsComponent";
 
 export default function Pace() {
     const paceBowlingVids = [

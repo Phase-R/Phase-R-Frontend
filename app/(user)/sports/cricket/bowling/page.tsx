@@ -1,4 +1,4 @@
-import VidComponent from "@/app/(user)/physical-fitness/VidsComponent";
+import VidComponent from "@/app/(user)/VidsComponent";
 import PageHeader from "@/app/(user)/PageHeader";
 import SubPageSection from "../SubPageSection";
 

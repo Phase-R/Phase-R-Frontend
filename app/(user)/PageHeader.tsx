@@ -26,7 +26,7 @@ const PageHeader = (props: PropTypes) => {
                     className="z-10 w-full mx-auto"
                 />
                 <div
-                    className="text-center bg-black bg-opacity-80 z-20 xl:absolute lg:absolute xl:inset-0 lg:inset-0 px-20 py-[15%] w-full xl:w-[50%] lg:w-[50%] flex flex-col justify-center"
+                    className="text-center bg-black bg-opacity-60 z-20 xl:absolute lg:absolute xl:inset-0 lg:inset-0 px-20 py-[15%] w-full xl:w-[50%] lg:w-[50%] flex flex-col justify-center"
                     style={{ height: '100%' }}
                 >
                     <h1 className={`text-3xl xl:text-7xl lg:text-5xl font-bold ${poppins.className}`}>

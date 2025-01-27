@@ -41,9 +41,9 @@ const LoginForm = () => {
 		}
 	}, [getIsAuthenticated, push]);
 
-	const handleGoogleSignIn = async () => {
-		window.location.href = "http://localhost:8080/user/google/signin";
-	};
+	// const handleGoogleSignIn = async () => {
+	// 	window.location.href = "http://localhost:8080/user/google/signin";
+	// };
 
 	const onHandleSubmit = async (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -169,7 +169,7 @@ const LoginForm = () => {
 
 							<div className="flex justify-center items-center gap-4 sm:gap-5 md:gap-6 my-8">
 								<div className="border-2 border-white rounded-full p-3 sm:p-4 md:p-5 group transition-all ease-in-out hover:bg-white text-white hover:text-black">
-									<GoogleIcon className="group-hover:scale-110" onClick={handleGoogleSignIn} />
+									<GoogleIcon className="group-hover:scale-110"/>
 								</div>
 								<div className="border-2 border-white rounded-full p-3 sm:p-4 md:p-5 group transition-all ease-in-out hover:bg-white text-white hover:text-black">
 									<FacebookIcon className="group-hover:scale-110" />

@@ -57,7 +57,8 @@ const PageSection = (props: PropTypes) => {
                 <p className="my-10 text-md">{props.desc}</p>
                 <Link
                     href={props.linkTo}
-                    className={`border-y-4 rounded-2xl py-2 px-5 ${props.borderColor}`}
+                    // className={`border-y-4 rounded-2xl py-2 px-5 ${props.borderColor}`}
+                    className={`bg-black text-white rounded-2xl py-2 px-5 transition duration-300`}
                 >
                     <span className={`text-xl text-center ${poppins.className}`}>
                         Discover &gt;&gt;

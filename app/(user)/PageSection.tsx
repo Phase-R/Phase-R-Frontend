@@ -58,7 +58,7 @@ const PageSection = (props: PropTypes) => {
                 <Link
                     href={props.linkTo}
                     // className={`border-y-4 rounded-2xl py-2 px-5 ${props.borderColor}`}
-                    className={`bg-black text-white rounded-2xl py-2 px-5 transition duration-300`}
+                    className={`bg-black text-white rounded-2xl py-3 px-5 transition duration-300`}
                 >
                     <span className={`text-xl text-center ${poppins.className}`}>
                         Discover &gt;&gt;

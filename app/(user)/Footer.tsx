@@ -4,7 +4,7 @@ export default function Footer() {
     // footer_links = [{text: "Features", route: "/#features"}, {text: ""}]
 
     return (
-        <footer className="bg-gray-900 text-white py-12 px-4 xl:px-8">
+        <footer id="about" className="bg-gray-900 text-white py-12 px-4 xl:px-8">
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
                 {/* Company Info and Newsletter */}
                 <div className="space-y-6">

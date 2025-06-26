@@ -88,7 +88,7 @@ export default function Navbar() {
                         <Link href="/services" className="text-base font-medium text-white hover:text-gray-300">
                             Services
                         </Link>
-                        <Link href="/about" className="text-base font-medium text-white hover:text-gray-300">
+                        <Link href="/#about" className="text-base font-medium text-white hover:text-gray-300">
                             About us
                         </Link>
                         <Link href="/store" className="text-base font-medium text-white hover:text-gray-300">

@@ -80,13 +80,23 @@ const MuscleGainPage: React.FC<PageProps> = ({
   };
 
     const generateDiet = async () => {
+        // const params = {
+        //     plan: "Muscle Gain",
+        //     activity: "Moderate",
+        //     cuisine: "Italian",
+        //     meal_choice: "Vegetarian"
+        // };
         const params = {
-            plan: "Muscle Gain",
-            activity: "Moderate",
-            cuisine: "Italian",
-            meal_choice: "Vegetarian"
+          plan: "Muscle Gain",
+          activity: "Moderate",
+          cuisine: "Italian",
+          meal_choice: category === FoodCategory.Veg ? "Vegetarian" : "Non-Vegetarian",
+          selected_proteins: selected.map(item => ({
+            name: item.name,
+            amount: item.amount
+          }))
         };
-
+        console.log("JSON Payload sent: ",JSON.stringify(params,null,2));
         try {
             const response = await fetch("http://localhost:8000/generate_diet", {
                 method: "POST",
@@ -247,7 +257,10 @@ const MuscleGainPage: React.FC<PageProps> = ({
               </div>
             ))}
             <div className="flex flex-col items-center mt-8 space-y-4">
-              <button onClick={generateDiet} className="w-full py-3 text-white text-xl font-bold bg-[#4AC847] rounded-md">
+              {/* <button onClick={generateDiet} className="w-full py-3 text-white text-xl font-bold bg-[#4AC847] rounded-md">
+                Generate Diet
+              </button> */}
+              <button onClick={generateDiet} disabled={selected.length === 0} className={`w-full py-3 text-white text-xl font-bold rounded-md ${ selected.length === 0 ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#4AC847]'}`}>
                 Generate Diet
               </button>
               <button className="w-full py-3 text-white text-xl font-bold bg-[#4AC847] rounded-md">
